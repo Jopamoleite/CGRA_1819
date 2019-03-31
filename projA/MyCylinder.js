@@ -31,37 +31,48 @@ class MyCylinder extends CGFobject {
             this.vertices.push(caa, 0, saa);
             this.vertices.push(ca, 1, sa);
             this.vertices.push(caa, 1, saa);
-
-            // triangle normal computed by cross product of two edges
             var normal= [
-                saa-sa,
+                ca,
                 0,
-                caa-ca
+                sa
             ];
 
-            // normalization
+            var normal1= [
+                caa,
+                0,
+                saa
+            ];
+
             var nsize=Math.sqrt(
                 normal[0]*normal[0]+
                 normal[1]*normal[1]+
-                normal[2]*normal[2]+
-                normal[3]*normal[3]
+                normal[2]*normal[2]
                 );
             normal[0]/=nsize;
             normal[1]/=nsize;
             normal[2]/=nsize;
-            normal[3]/=nsize;
+            
+            var nsize1=Math.sqrt(
+                normal1[0]*normal1[0]+
+                normal1[1]*normal1[1]+
+                normal1[2]*normal1[2]
+                );
+            normal1[0]/=nsize1;
+            normal1[1]/=nsize1;
+            normal1[2]/=nsize1;
 
-            // push normal once for each vertex of this triangle
+
             this.normals.push(...normal);
+            this.normals.push(...normal1);
             this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            this.normals.push(...normal1);
 
             this.indices.push(4*i, (4*i+2), (4*i+1));
             this.indices.push((4*i+1), (4*i+2), (4*i+3));
 
             ang+=alphaAng;
         }
+
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();

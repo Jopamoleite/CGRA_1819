@@ -36,20 +36,18 @@ class MyPrism extends CGFobject {
             var normal= [
                 saa-sa,
                 0,
-                caa-ca
+                ca-caa
             ];
 
             // normalization
             var nsize=Math.sqrt(
                 normal[0]*normal[0]+
                 normal[1]*normal[1]+
-                normal[2]*normal[2]+
-                normal[3]*normal[3]
+                normal[2]*normal[2]
                 );
             normal[0]/=nsize;
             normal[1]/=nsize;
             normal[2]/=nsize;
-            normal[3]/=nsize;
 
             // push normal once for each vertex of this triangle
             this.normals.push(...normal);
@@ -66,7 +64,7 @@ class MyPrism extends CGFobject {
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
-    
+
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
 

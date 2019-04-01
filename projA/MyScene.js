@@ -20,10 +20,23 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
+        
+        this.trunkTexture = new CGFtexture(this, 'images/Trunk.png');
+        this.treeTopTexture = new CGFtexture(this, 'images/TreeTop.png');
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);  
-        this.prism = new MyPrism(this, 50, 1);
-        this.cylinder = new MyCylinder(this,50,1);
+        this.tree = new MyTree(this, 2.0, 1.0, 1.0, 2.0, this.trunkTexture, this.treeTopTexture);
+        this.cone = new MyCone(this, 10, 1);
+
+        
+        this.coneMaterial = new CGFappearance(this);
+        this.coneMaterial.setAmbient(1, 1, 1, 1);
+        this.coneMaterial.setDiffuse(1, 1, 1, 1);
+        this.coneMaterial.setSpecular(1, 1, 1, 1);
+        this.coneMaterial.setShininess(10.0);
+        this.coneMaterial.loadTexture('images/cone.png');
+        //this.coneMaterial.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
 
         //Objects connected to MyInterface
         this.displayNormals = true;
@@ -79,14 +92,9 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        
-        if (this.displayNormals){
-            this.cylinder.enableNormalViz();
-        }else{
-            this.cylinder.disableNormalViz();
-        }
-
-        this.cylinder.display();
+        //this.tree.display();
+        this.coneMaterial.apply();
+        this.cone.display();
 
         // ---- END Primitive drawing section
     }

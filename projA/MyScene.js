@@ -12,7 +12,7 @@ class MyScene extends CGFscene {
         this.initLights();
 
         //Background color
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.7, 0.7, 0.7, 1.0);
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -23,27 +23,33 @@ class MyScene extends CGFscene {
         
         this.trunkTexture = new CGFtexture(this, 'images/Trunk.png');
         this.treeTopTexture = new CGFtexture(this, 'images/TreeTop.png');
+        
+        this.trunkMaterial = new CGFappearance(this);
+        this.trunkMaterial.setAmbient(1, 1, 1, 1);
+        this.trunkMaterial.setDiffuse(1, 1, 1, 1);
+        this.trunkMaterial.setSpecular(1, 1, 1, 1);
+        this.trunkMaterial.setShininess(10.0);
+        this.trunkMaterial.setTexture(this.trunkTexture);
+        this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.treeTopMaterial = new CGFappearance(this);
+        this.treeTopMaterial.setAmbient(1, 1, 1, 1);
+        this.treeTopMaterial.setDiffuse(1, 1, 1, 1);
+        this.treeTopMaterial.setSpecular(1, 1, 1, 1);
+        this.treeTopMaterial.setShininess(10.0);
+        this.treeTopMaterial.setTexture(this.treeTopTexture);
+        this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);  
-        this.tree = new MyTree(this, 2.0, 1.0, 1.0, 2.0, this.trunkTexture, this.treeTopTexture);
-        this.cone = new MyCone(this, 10, 1);
-
-        
-        this.coneMaterial = new CGFappearance(this);
-        this.coneMaterial.setAmbient(1, 1, 1, 1);
-        this.coneMaterial.setDiffuse(1, 1, 1, 1);
-        this.coneMaterial.setSpecular(1, 1, 1, 1);
-        this.coneMaterial.setShininess(10.0);
-        this.coneMaterial.loadTexture('images/cone.png');
-        //this.coneMaterial.setTextureWrap('CLAMP_TO_EDGE','CLAMP_TO_EDGE');
+        this.tree = new MyTree(this, 2.0, 1.0, 4.0, 2.0, this.trunkMaterial, this.treeTopMaterial);
 
         //Objects connected to MyInterface
         this.displayNormals = true;
         this.scaleFactor = 2.0;
     }
     initLights() {
-        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
+        this.setGlobalAmbientLight(0.6, 0.6, 0.6, 1.0);
 
         this.lights[0].setPosition(0.0,0.5,2.0, 1.0);
         this.lights[0].setDiffuse(1.0, 0.5, 0.0, 1.0);
@@ -92,9 +98,7 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //this.tree.display();
-        this.coneMaterial.apply();
-        this.cone.display();
+        this.tree.display();
 
         // ---- END Primitive drawing section
     }

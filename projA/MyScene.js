@@ -23,6 +23,10 @@ class MyScene extends CGFscene {
         
         this.trunkTexture = new CGFtexture(this, 'images/Trunk.png');
         this.treeTopTexture = new CGFtexture(this, 'images/TreeTop.png');
+        this.roofTexture = new CGFtexture(this, 'images/bricks.png');
+        this.wallTexture = new CGFtexture(this, 'images/stone.png');
+        this.wallDoorTexture = new CGFtexture(this, 'images/wallWithDoor.png');
+        this.pillarTexture = new CGFtexture(this, 'images/pillar.png');
         
         this.trunkMaterial = new CGFappearance(this);
         this.trunkMaterial.setAmbient(1, 1, 1, 1);
@@ -39,13 +43,45 @@ class MyScene extends CGFscene {
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.roofMaterial = new CGFappearance(this);
+        this.roofMaterial.setAmbient(1, 1, 1, 1);
+        this.roofMaterial.setDiffuse(1, 1, 1, 1);
+        this.roofMaterial.setSpecular(1, 1, 1, 1);
+        this.roofMaterial.setShininess(10.0);
+        this.roofMaterial.setTexture(this.roofTexture);
+        this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.wallMaterial = new CGFappearance(this);
+        this.wallMaterial.setAmbient(1, 1, 1, 1);
+        this.wallMaterial.setDiffuse(1, 1, 1, 1);
+        this.wallMaterial.setSpecular(1, 1, 1, 1);
+        this.wallMaterial.setShininess(10.0);
+        this.wallMaterial.setTexture(this.wallTexture);
+        this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.wallDoorMaterial = new CGFappearance(this);
+        this.wallDoorMaterial.setAmbient(1, 1, 1, 1);
+        this.wallDoorMaterial.setDiffuse(1, 1, 1, 1);
+        this.wallDoorMaterial.setSpecular(1, 1, 1, 1);
+        this.wallDoorMaterial.setShininess(10.0);
+        this.wallDoorMaterial.setTexture(this.wallDoorTexture);
+        this.wallDoorMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.columnMaterial = new CGFappearance(this);
+        this.columnMaterial.setAmbient(1, 1, 1, 1);
+        this.columnMaterial.setDiffuse(1, 1, 1, 1);
+        this.columnMaterial.setSpecular(1, 1, 1, 1);
+        this.columnMaterial.setShininess(10.0);
+        this.columnMaterial.setTexture(this.pillarTexture);
+        this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);  
         this.tree = new MyTree(this, 2.0, 1.0, 4.0, 2.0, this.trunkMaterial, this.treeTopMaterial);
         this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, -5.0);
         this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 10.0);
-        this.house = new MyHouse(this, 3, 3, 4);
+        this.house = new MyHouse(this, 3.0, 3.0, 4.0, this.roofMaterial, this.wallMaterial, this.wallDoorMaterial, this.columnMaterial);
 
         //Objects connected to MyInterface
         this.displayNormals = false;

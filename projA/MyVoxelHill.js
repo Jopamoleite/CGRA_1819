@@ -4,10 +4,10 @@
 */
 
 class MyVoxelHill extends CGFobject {
-    constructor(scene, levels){
+    constructor(scene, levels, texture1, texture2){
         super(scene);
         this.levels = levels;
-        this.quad = new MyUnitCubeQuad(this.scene);
+        this.quad = new MyUnitCubeQuad(this.scene, texture1, texture2);
     }
     display(){
        var side = 1 + 2*(this.levels-1);

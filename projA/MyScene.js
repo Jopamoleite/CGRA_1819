@@ -83,7 +83,7 @@ class MyScene extends CGFscene {
         this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 10.0);
         this.house = new MyHouse(this, 3.0, 3.0, 4.0, this.roofMaterial, this.wallMaterial, this.wallDoorMaterial, this.columnMaterial);
 
-        this.voxelHill = new MyVoxelHill(this, 4);
+        this.voxelHill = new MyVoxelHill(this, 4, this.wallMaterial, this.wallDoorMaterial);
 
         //Objects connected to MyInterface
         this.displayNormals = false;
@@ -139,8 +139,8 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //this.house.display();
-        this.voxelHill.display();
+        this.house.display();
+        //this.voxelHill.display();
 
         // ---- END Primitive drawing section
     }

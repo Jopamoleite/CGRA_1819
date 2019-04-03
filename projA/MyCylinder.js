@@ -69,8 +69,15 @@ class MyCylinder extends CGFobject {
             
             this.vertices.push(Math.cos(0), 1, Math.sin(0));
             this.vertices.push(Math.cos(0), 0, Math.sin(0));
-            this.texCoords.push(1.0, 0.0);
-            this.texCoords.push(1.0, 1.0);
+            if((this.slices%2)==0){
+                this.texCoords.push(0.0, 0.0);
+                this.texCoords.push(0.0, 1.0);
+            }
+            else{
+                this.texCoords.push(1.0, 0.0);
+                this.texCoords.push(1.0, 1.0);
+            }
+
             this.normals.push(normal[0]);
             this.normals.push(normal[1]);
         }

@@ -4,8 +4,13 @@
  * @param scene - Reference to MyScene object
  */
 class MyQuad extends CGFobject {
-	constructor(scene, coords) {
+	constructor(scene, coords, reverse) {
 		super(scene);
+		if(reverse != undefined){
+			this.reverse = true;
+		}else{
+			this.reverse = false;
+		}
 		this.initBuffers();
 		if (coords != undefined)
 			this.updateTexCoords(coords);
@@ -20,28 +25,34 @@ class MyQuad extends CGFobject {
 		];
 
 		//Counter-clockwise reference of vertices
-		this.indices = [
-			0, 1, 2,
-			1, 3, 2
-		];
+		if(this.reverse){
+			this.indices = [
+				0, 2, 1,
+				1, 2, 3
+			];
+
+			this.normals = [
+				0, 0, -1,
+				0, 0, -1,
+				0, 0, -1,
+				0, 0, -1
+			];
+
+		}else{
+			this.indices = [
+				0, 1, 2,
+				1, 3, 2
+			];
+
+			this.normals = [
+				0, 0, 1,
+				0, 0, 1,
+				0, 0, 1,
+				0, 0, 1
+			];
+		}
 
 		//Facing Z positive
-		this.normals = [
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1
-		];
-		
-		/*
-		Texture coords (s,t)
-		+----------> s
-        |
-        |
-		|
-		v
-        t
-        */
 
 		this.texCoords = [
 			0, 1,

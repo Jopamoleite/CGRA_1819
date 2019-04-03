@@ -4,10 +4,20 @@
 */
 
 class MyVoxelHill extends CGFobject {
-    constructor(scene, levels, texture1, texture2){
+    constructor(scene, levels){
         super(scene);
         this.levels = levels;
-        this.quad = new MyUnitCubeQuad(this.scene, texture1, texture2);
+        
+        this.wallTexture = new CGFtexture(this.scene, 'images/stone.png');
+        this.wallMaterial = new CGFappearance(this.scene);
+        this.wallMaterial.setAmbient(1, 1, 1, 1);
+        this.wallMaterial.setDiffuse(1, 1, 1, 1);
+        this.wallMaterial.setSpecular(1, 1, 1, 1);
+        this.wallMaterial.setShininess(10.0);
+        this.wallMaterial.setTexture(this.wallTexture);
+        this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.quad = new MyUnitCubeQuad(this.scene, this.wallMaterial, this.wallMaterial);
     }
     display(){
        var side = 1 + 2*(this.levels-1);

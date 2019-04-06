@@ -40,19 +40,31 @@ class MyScene extends CGFscene {
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
+        this.groundTexture = new CGFtexture(this, 'images/hillTop.png');
+        this.groundMaterial = new CGFappearance(this);
+        this.groundMaterial.setAmbient(1, 1, 1, 1);
+        this.groundMaterial.setDiffuse(1, 1, 1, 1);
+        this.groundMaterial.setSpecular(1, 1, 1, 1);
+        this.groundMaterial.setShininess(10.0);
+        this.groundMaterial.setTexture(this.groundTexture);
+        this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
         //Initialize scene objects
-        this.axis = new CGFaxis(this);  
-        this.tree = new MyTree(this, 2.0, 1.0, 4.0, 2.0, this.trunkMaterial, this.treeTopMaterial);
-        this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, -5.0);
-        this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 10.0);
-        this.house = new MyHouse(this, 3.0, 3.0, 4.0);
-        this.cubemap = new MyCubeMap(this, 100);
+        this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -30, -25.0);
+        this.treeGroup2 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, 10.0, -30.0);
 
-        this.voxelHill = new MyVoxelHill(this, 5);
+        this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 10, 10.0);
+        this.treeRow2 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 45.0);
+
+        this.house = new MyHouse(this, 3.0, 3.0, 4.0);
+        this.cubemap = new MyCubeMap(this, 150);
+        this.ground = new MyGround(this, this.groundMaterial, 150);
+        this.voxelHill = new MyVoxelHill(this, 5, this.groundMaterial, 25, 30);
+        this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
+        this.axis = new CGFaxis(this);
 
         //Objects connected to MyInterface
         this.displayNormals = false;
-        this.scaleFactor = 2.0;
     }
     initLights() {
         this.setGlobalAmbientLight(0.6, 0.6, 0.6, 1.0);
@@ -61,18 +73,16 @@ class MyScene extends CGFscene {
         this.lights[0].setDiffuse(1.0, 0.5, 0.0, 1.0);
         this.lights[0].setSpecular(0.0, 0.0, 0.0, 1.0);
         this.lights[0].disable();
-        this.lights[0].setVisible(true);
         this.lights[0].update();
 
         this.lights[1].setPosition(2.0, 0.5, 0.0, 1.0);
         this.lights[1].setDiffuse(0.0, 0.0, 0.0, 1.0);
         this.lights[1].setSpecular(1.0, 0.6, 0.1, 1.0);
         this.lights[1].disable();
-        this.lights[1].setVisible(true);
         this.lights[1].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(65, 40, 65), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(1.0, 0.5, 0.2, 1.0);
@@ -90,25 +100,25 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
 
+        this.axis.display();
         
         this.lights[0].update();
         this.lights[1].update();
-
-        // Draw axis
-        this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
 
-        //this.house.display();
-        //this.voxelHill.display();
+        this.house.display();
+        this.voxelHill.display();
+        this.voxelHill2.display();
         this.treeGroup.display();
-        //this.treeRow.display();
-        //this.tree.display();
+        this.treeRow.display();
+        this.treeGroup2.display();
+        this.treeRow2.display();
+        this.ground.display();
         this.cubemap.display();
 
         // ---- END Primitive drawing section

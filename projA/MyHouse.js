@@ -11,7 +11,7 @@ class MyHouse extends CGFobject {
 
         this.initMaterials();
 
-        this.walls = new MyUnitCubeQuad(this.scene, this.wallMaterial, this.wallDoorMaterial);
+        this.walls = new MyUnitCubeQuad(this.scene, this.wallDoorMaterial, this.wallWindowMaterial, this.wallMaterial, this.wallWindowMaterial, this.wallMaterial, this.wallMaterial);
         this.roof = new MyPyramid(this.scene, 4, 1);
         this.column = new MyPrism(this.scene, 10, 1);
         
@@ -22,6 +22,7 @@ class MyHouse extends CGFobject {
         this.roofTexture = new CGFtexture(this.scene, 'images/bricks.png');
         this.wallTexture = new CGFtexture(this.scene, 'images/stone.png');
         this.wallDoorTexture = new CGFtexture(this.scene, 'images/wallWithDoor.png');
+        this.wallWindowTexture = new CGFtexture(this.scene, 'images/wallWithWindow.png');
         this.pillarTexture = new CGFtexture(this.scene, 'images/pillar.png');
 
         this.roofMaterial = new CGFappearance(this.scene);
@@ -47,6 +48,14 @@ class MyHouse extends CGFobject {
         this.wallDoorMaterial.setShininess(10.0);
         this.wallDoorMaterial.setTexture(this.wallDoorTexture);
         this.wallDoorMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.wallWindowMaterial = new CGFappearance(this.scene);
+        this.wallWindowMaterial.setAmbient(1, 1, 1, 1);
+        this.wallWindowMaterial.setDiffuse(1, 1, 1, 1);
+        this.wallWindowMaterial.setSpecular(1, 1, 1, 1);
+        this.wallWindowMaterial.setShininess(10.0);
+        this.wallWindowMaterial.setTexture(this.wallWindowTexture);
+        this.wallWindowMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.columnMaterial = new CGFappearance(this.scene);
         this.columnMaterial.setAmbient(1, 1, 1, 1);

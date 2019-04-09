@@ -25,15 +25,8 @@ class MyCylinder extends CGFobject {
 
             this.vertices.push(ca, 1, sa);
             this.vertices.push(ca, 0, sa);
-
-            if((i%2)==0){
-                this.texCoords.push(0.0, 0.0);
-                this.texCoords.push(0.0, 1.0);
-            }
-            else{
-                this.texCoords.push(1.0, 0.0);
-                this.texCoords.push(1.0, 1.0);
-            }
+            this.texCoords.push(i/this.slices, 0);
+            this.texCoords.push(i/this.slices, 1);
 
             var normal= [
                 ca,
@@ -62,24 +55,20 @@ class MyCylinder extends CGFobject {
         }
 
         if(this.slices > 2){
-            this.indices.push(0, 2, 1);
-            this.indices.push(1, 2, 3);
-            this.indices.push(2*(this.slices-1), 0, (this.slices-1)*2+1);
-            this.indices.push((this.slices-1)*2+1, 0, 1);
-            
             this.vertices.push(Math.cos(0), 1, Math.sin(0));
             this.vertices.push(Math.cos(0), 0, Math.sin(0));
-            if((this.slices%2)==0){
-                this.texCoords.push(0.0, 0.0);
-                this.texCoords.push(0.0, 1.0);
-            }
-            else{
-                this.texCoords.push(1.0, 0.0);
-                this.texCoords.push(1.0, 1.0);
-            }
 
-            this.normals.push(normal[0]);
-            this.normals.push(normal[1]);
+            this.indices.push(0, 2, 1);
+            this.indices.push(1, 2, 3);
+            this.indices.push(2*(this.slices-1), this.slices*2+1, (this.slices-1)*2+1);
+            this.indices.push(2*(this.slices-1), this.slices*2,  this.slices*2+1);
+            
+            
+            this.texCoords.push(1, 0);
+            this.texCoords.push(1, 1);
+
+            this.normals.push(this.normals[0], this.normals[1], this.normals[2]);
+            this.normals.push(this.normals[3], this.normals[4], this.normals[5]);
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;

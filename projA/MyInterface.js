@@ -16,6 +16,7 @@ class MyInterface extends CGFinterface {
         
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
         
+        this.gui.add(this.scene, 'enableTex').name("Enable textures");
         
         var f0 = this.gui.addFolder('Light 0 ');
         f0.add(this.scene.lights[0], 'enabled').name("Enabled");

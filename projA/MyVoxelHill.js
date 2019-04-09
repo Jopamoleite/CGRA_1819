@@ -44,16 +44,29 @@ class MyVoxelHill extends CGFobject {
         this.scene.translate(this.startingX, 0.5, this.startingZ);
 
        var side = 1 + 2*(this.levels-1);
-       for(var i = 0; i<this.levels; i++){
-           for(var line = 0; line<side; line++){
-               for(var column = 0; column<side; column++){
-                   this.scene.pushMatrix();
-                   this.scene.translate(line - side/2 +0.5, i, column - side/2+0.5);
-                   this.quad.display();
-                   this.scene.popMatrix();
-               }
-           }
-           side -= 2;
+
+       for(var i=0; i<this.levels; i++){
+            for(var column = 0; column<side; column++){
+                this.scene.pushMatrix();
+                this.scene.translate(-side/2 + 0.5, i, column - side/2+0.5);
+                this.quad.display();
+                this.scene.popMatrix();
+                this.scene.pushMatrix();
+                this.scene.translate(side - 1 - side/2 + 0.5, i, column - side/2 + 0.5);
+                this.quad.display();
+                this.scene.popMatrix();
+            }
+            for(var line = 0; line<side; line++){
+                this.scene.pushMatrix();
+                this.scene.translate(line-side/2 + 0.5, i, -side/2+0.5);
+                this.quad.display();
+                this.scene.popMatrix();
+                this.scene.pushMatrix();
+                this.scene.translate(line - side/2 + 0.5, i, side - 1 - side/2 + 0.5);
+                this.quad.display();
+                this.scene.popMatrix();
+            }
+            side -= 2;
        }
        this.scene.popMatrix();
     }

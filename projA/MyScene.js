@@ -11,6 +11,10 @@ class MyScene extends CGFscene {
         this.initCameras();
         this.initLights();
 
+        //Objects connected to MyInterface
+        this.displayNormals = false;
+        this.enableTex = true;
+
         //Background color
         this.gl.clearColor(0.7, 0.7, 0.7, 1.0);
 
@@ -18,7 +22,7 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
-        this.enableTextures(true);
+        this.enableTextures(this.enableTex);
 
         
         this.trunkTexture = new CGFtexture(this, 'images/Trunk.png');
@@ -63,8 +67,6 @@ class MyScene extends CGFscene {
         this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
         this.axis = new CGFaxis(this);
 
-        //Objects connected to MyInterface
-        this.displayNormals = false;
     }
     initLights() {
         this.setGlobalAmbientLight(0.6, 0.6, 0.6, 1.0);
@@ -108,6 +110,8 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
+
+        this.enableTextures(this.enableTex);
 
         // ---- BEGIN Primitive drawing section
 

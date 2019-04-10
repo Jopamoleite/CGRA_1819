@@ -32,10 +32,12 @@ class MyPyramid extends CGFobject {
             this.vertices.push(ca, 0, -sa);
             this.vertices.push(caa, 0, -saa);
 
+            //Each face has the same texture
             this.texCoords.push(0.5, 0);
             this.texCoords.push(0, 1);
             this.texCoords.push(1, 1);
 
+            //The texture is placed with its center at the top point, instead of being repeated 
             //this.texCoords.push(0.5, 0.5);
             //this.texCoords.push(0.5+0.5*Math.cos(ang), 0.5+0.5*Math.sin(ang)); 
             //this.texCoords.push(0.5+0.5*Math.cos(ang+alphaAng), 0.5+0.5*Math.sin(ang+alphaAng)); 

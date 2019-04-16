@@ -68,6 +68,8 @@ class MyHouse extends CGFobject {
     }
 
     display() {
+        this.scene.pushMatrix();
+        this.scene.scale(3,3,3);
         
         this.columnMaterial.apply();
         this.scene.pushMatrix();
@@ -106,6 +108,7 @@ class MyHouse extends CGFobject {
         this.scene.scale(this.roofSide, this.roofHeight, this.roofSide);
         this.scene.rotate(Math.PI/4, 0.0, 1.0, 0.0);
         this.roof.display();
+        this.scene.popMatrix();
         this.scene.popMatrix();
     }
 }

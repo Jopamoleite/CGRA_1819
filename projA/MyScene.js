@@ -41,7 +41,7 @@ class MyScene extends CGFscene {
         this.treeTopMaterial = new CGFappearance(this);
         this.treeTopMaterial.setAmbient(1.0, 0.86, 0.64, 1.0);
         this.treeTopMaterial.setDiffuse(1.0, 0.86, 0.64, 1.0);
-        this.treeTopMaterial.setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -126,7 +126,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(15, 25, 60), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(60, 25, 60), vec3.fromValues(0, 0, 0));
     }
 
     display() {

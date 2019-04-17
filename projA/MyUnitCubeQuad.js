@@ -48,9 +48,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.popMatrix();
 
         this.textureTop.apply();
-		this.scene.setAmbient(0.7, 1, 0.5, 1.0);
-        this.scene.setDiffuse(0.7, 1, 0.5, 1.0);
-        this.scene.setSpecular(0.3, 0.5, 0.2, 1.0);
         this.scene.setShininess(10.0);
         this.scene.pushMatrix();
         this.scene.rotate(-Math.PI/2,1,0,0);

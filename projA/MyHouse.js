@@ -79,7 +79,7 @@ class MyHouse extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.scale(3,3,3);
+        this.scene.scale(2.5,2.5,2.5);
         
         this.columnMaterial.apply();
         this.scene.pushMatrix();

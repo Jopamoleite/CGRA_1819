@@ -27,6 +27,8 @@ class MyScene extends CGFscene {
         
         this.trunkTexture = new CGFtexture(this, 'images/Trunk.png');
         this.treeTopTexture = new CGFtexture(this, 'images/TreeTop.png');
+        this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
+        this.skyTextureNight = new CGFtexture(this, 'images/skyboxNight.png');
         
         this.trunkMaterial = new CGFappearance(this);
         this.trunkMaterial.setAmbient(0.8, 0.4, 0.1, 1.0);
@@ -37,9 +39,9 @@ class MyScene extends CGFscene {
         this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.treeTopMaterial = new CGFappearance(this);
-        this.treeTopMaterial.setAmbient(0.8, 0.0, 0.6, 1.0);
-        this.treeTopMaterial.setDiffuse(0.8, 0.0, 0.6, 1.0);
-        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.treeTopMaterial.setAmbient(1.0, 0.86, 0.64, 1.0);
+        this.treeTopMaterial.setDiffuse(1.0, 0.86, 0.64, 1.0);
+        this.treeTopMaterial.setSpecular(1.0, 1.0, 1.0, 1.0);
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -56,7 +58,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -30.0, -25.0);
         this.treeGroup2 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, 10.0, -30.0);
-        this.treeGroup3 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -10.0, -27.0);
+        this.treeGroup3 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -10.0, -35.0);
+        this.treeGroup4 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, 8.0, -50.0);
 
         this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 5.0, 15.0);
         this.treeRow2 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 43.0);
@@ -64,11 +67,19 @@ class MyScene extends CGFscene {
         this.treeRow4 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 51.0);
         this.treeRow5 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 58.0);
 
+        this.treeRow6 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 25.0, -50.0);
+        this.treeRow7 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 20.0, -57.0);
+        
+        this.bigTree = new MyBigTree(this, this.trunkMaterial, this.treeTopMaterial, -40, -40);
+
+        this.bench = new MyBench(this, 47, -40);
+        this.bench2 = new MyBench(this, -31, -39, -Math.PI/2);
+
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
-        this.cubemap = new MyCubeMap(this, 125);
+        this.cubemap = new MyCubeMap(this, 125, this.skyTextureDay);
         this.ground = new MyGround(this, this.groundMaterial, 125);
-        this.campfire = new MyCampfire(this, 50, -50);
         this.lake = new MyLake(this, 20, 0, 0);
+        this.campfire = new MyCampfire(this, 40, -40);
         this.voxelHill = new MyVoxelHill(this, 10, this.groundMaterial, 25, 30);
         this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
         this.voxelHill3 = new MyVoxelHill(this, 7, this.groundMaterial, -50, 50);
@@ -96,13 +107,13 @@ class MyScene extends CGFscene {
         this.lights[1].setAmbient(0.22, 0.33, 1.0, 1.0);
         this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[1].setConstantAttenuation(0);
-        this.lights[1].setLinearAttenuation(0.02);
+        this.lights[1].setLinearAttenuation(0.01);
         this.lights[1].setQuadraticAttenuation(0);
         this.lights[1].disable();
         this.lights[1].update();
 
         //CAMPFIRE
-        this.lights[2].setPosition(50, 0, -50, 1.0);
+        this.lights[2].setPosition(40, 0, -40, 1.0);
         this.lights[2].setDiffuse(1, 0.58, 0.16, 1.0);
         this.lights[2].setAmbient(1, 0.58, 0.16, 1.0);
         this.lights[2].setSpecular(1.0, 1.0, 1.0, 1.0);
@@ -113,7 +124,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(50, 40, 50), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(25, 25, 60), vec3.fromValues(0, 0, 0));
     }
 
     display() {
@@ -136,6 +147,7 @@ class MyScene extends CGFscene {
             this.lights[1].update();
             this.lights[2].disable();
             this.lights[2].update();
+            this.cubemap.updateTexture(this.skyTextureDay);
         }
         else{
             //NIGHT MODE
@@ -145,6 +157,7 @@ class MyScene extends CGFscene {
             this.lights[1].update();
             this.lights[2].enable();
             this.lights[2].update();
+            this.cubemap.updateTexture(this.skyTextureNight);
         }
 
 
@@ -162,15 +175,21 @@ class MyScene extends CGFscene {
         this.treeGroup.display();
         this.treeGroup2.display();
         this.treeGroup3.display();
+        this.treeGroup4.display();
         this.treeRow.display();
         this.treeRow2.display();
         this.treeRow3.display();
         this.treeRow4.display();
         this.treeRow5.display();
+        this.treeRow6.display();
+        this.treeRow7.display();
         this.ground.display();
         this.cubemap.display();
         this.campfire.display();
         this.lake.display();
+        this.bigTree.display();
+        this.bench.display();
+        this.bench2.display();
 
         // ---- END Primitive drawing section
     }

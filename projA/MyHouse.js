@@ -1,5 +1,5 @@
 /**
-* MyTree
+* MyHouse
 * @constructor
 */
 class MyHouse extends CGFobject {

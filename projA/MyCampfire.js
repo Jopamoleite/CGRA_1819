@@ -16,19 +16,19 @@ class MyCampfire extends CGFobject {
 
     initMaterials(){
         
-        this.woodTexture = new CGFtexture(this.scene, 'images/Trunk.png');
+        this.woodTexture = new CGFtexture(this.scene, 'images/Trunk2.png');
         this.rockTexture = new CGFtexture(this.scene, 'images/rock.png');
         this.wallDoorTexture = new CGFtexture(this.scene, 'images/wallWithDoor.png');
         this.wallWindowTexture = new CGFtexture(this.scene, 'images/wallWithWindow.png');
         this.fireTexture = new CGFtexture(this.scene, 'images/campfire.png');
 
-        this.roofMaterial = new CGFappearance(this.scene);
-        this.roofMaterial.setAmbient(0.65, 0.38, 0.33, 1);
-        this.roofMaterial.setDiffuse(0.65, 0.38, 0.33, 1);
-        this.roofMaterial.setSpecular(0.2, 0.2, 0.2, 1);
-        this.roofMaterial.setShininess(10.0);
-        this.roofMaterial.setTexture(this.woodTexture);
-        this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        this.woodMaterial = new CGFappearance(this.scene);
+        this.woodMaterial.setAmbient(0.65, 0.38, 0.33, 1);
+        this.woodMaterial.setDiffuse(0.65, 0.38, 0.33, 1);
+        this.woodMaterial.setSpecular(0.2, 0.2, 0.2, 1);
+        this.woodMaterial.setShininess(10.0);
+        this.woodMaterial.setTexture(this.woodTexture);
+        this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.rockMaterial = new CGFappearance(this.scene);
         this.rockMaterial.setAmbient(0.7, 0.7, 0.7, 1);
@@ -108,7 +108,7 @@ class MyCampfire extends CGFobject {
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
-        this.roofMaterial.apply();
+        this.woodMaterial.apply();
         this.scene.translate(0.3, 1.5, -0.5);
         this.scene.translate(-0.5, 0, -0.5);
         this.scene.rotate(Math.PI/3, 0, 1, 0);
@@ -119,7 +119,7 @@ class MyCampfire extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.roofMaterial.apply();
+        this.woodMaterial.apply();
         this.scene.translate(-0.5, 2.0, 2.0);
         this.scene.translate(-0.5, 0, -0.5);
         this.scene.rotate(Math.PI/3, 0, 1, 0);
@@ -130,7 +130,7 @@ class MyCampfire extends CGFobject {
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
-        this.roofMaterial.apply();
+        this.woodMaterial.apply();
         this.scene.translate(-1.0, 2.0, -0.5);
         this.scene.translate(-0.5, 0, -0.5);
         this.scene.rotate(-Math.PI/8, 0, 1, 0);
@@ -141,7 +141,7 @@ class MyCampfire extends CGFobject {
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
-        this.roofMaterial.apply();
+        this.woodMaterial.apply();
         this.scene.translate(1.5, 1.5, 0.5);
         this.scene.translate(-0.5, 0, -0.5);
         this.scene.rotate(-Math.PI/8, 0, 1, 0);

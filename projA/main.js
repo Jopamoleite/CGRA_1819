@@ -21,7 +21,7 @@ serialInclude(['../lib/CGF.js',
             'MyGround.js',
             'MyCampfire.js',
             'MyBigTree.js',
-            
+            'MyBench.js',
 
 main=function()
 {

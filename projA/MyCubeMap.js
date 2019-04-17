@@ -4,12 +4,12 @@
  * @param scene - Reference to MyScene object
  */
 class MyCubeMap extends CGFobject {
-	constructor(scene, scale) {
-		super(scene);
-                this.quad = new MyQuad(this.scene,undefined,true);
-                this.scale = scale;
+	constructor(scene, scale, skyTexture) {
+                super(scene);
                 
-        this.skyTexture = new CGFtexture(this.scene, 'images/skyboxDay.png');
+        this.quad = new MyQuad(this.scene,undefined,true);
+        this.scale = scale;                
+        this.skyTexture = skyTexture;
         this.skyMaterial = new CGFappearance(this.scene);
         this.skyMaterial.setAmbient(1, 1, 1, 1);
         this.skyMaterial.setDiffuse(1, 1, 1, 1);
@@ -62,5 +62,10 @@ class MyCubeMap extends CGFobject {
                 this.scene.popMatrix();
                 
                 this.scene.popMatrix();
-	}
+        }
+        
+        updateTexture(skyTexture){
+                this.skyTexture = skyTexture
+                this.skyMaterial.setTexture(this.skyTexture);
+        }
 }

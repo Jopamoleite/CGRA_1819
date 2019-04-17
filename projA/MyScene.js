@@ -55,6 +55,15 @@ class MyScene extends CGFscene {
         this.groundMaterial.setTexture(this.groundTexture);
         this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
+        this.coneTexture = new CGFtexture(this, 'images/cone.png');
+        this.coneMaterial = new CGFappearance(this);
+        this.coneMaterial.setAmbient(0.7, 1, 0.5, 1);
+        this.coneMaterial.setDiffuse(0.7, 1, 0.5, 1);
+        this.coneMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.coneMaterial.setShininess(10.0);
+        this.coneMaterial.setTexture(this.coneTexture);
+        this.coneMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
         //Initialize scene objects
         this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -30.0, -25.0);
         this.treeGroup2 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, 10.0, -30.0);
@@ -88,6 +97,8 @@ class MyScene extends CGFscene {
         this.voxelHill4 = new MyVoxelHill(this, 5, this.groundMaterial, -47, 40);
         this.voxelHill5 = new MyVoxelHill(this, 5, this.groundMaterial, -40, 47);
         this.voxelHill6 = new MyVoxelHill(this, 3, this.groundMaterial, -41, 41);
+
+        this.easterEgg = new MyCone(this, 15, 1);
     }
     initLights() {
         this.setGlobalAmbientLight(0.0, 0.0, 0.0, 1.0);
@@ -192,6 +203,12 @@ class MyScene extends CGFscene {
         this.bigTree.display();
         this.bench.display();
         this.bench2.display();
+        
+        this.pushMatrix();
+        this.rotate(Math.PI, 0, 1, 0);
+        this.coneMaterial.apply();
+        this.easterEgg.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }

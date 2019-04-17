@@ -12,7 +12,6 @@ class MyScene extends CGFscene {
         this.initLights();
 
         //Objects connected to MyInterface
-        this.displayNormals = false;
         this.enableTex = true;
         this.mode = 'Day';
 
@@ -55,19 +54,26 @@ class MyScene extends CGFscene {
         this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         //Initialize scene objects
-        this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -30, -25.0);
+        this.treeGroup = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -30.0, -25.0);
         this.treeGroup2 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, 10.0, -30.0);
+        this.treeGroup3 = new MyTreeGroupPatch(this, this.trunkMaterial, this.treeTopMaterial, -10.0, -27.0);
 
-        this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 10, 10.0);
-        this.treeRow2 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 45.0);
+        this.treeRow = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, 5.0, 15.0);
+        this.treeRow2 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 43.0);
+        this.treeRow3 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -20.0, 23.0);
+        this.treeRow4 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 51.0);
+        this.treeRow5 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 58.0);
 
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
-        this.cubemap = new MyCubeMap(this, 150);
-        this.ground = new MyGround(this, this.groundMaterial, 150);
-        this.voxelHill = new MyVoxelHill(this, 5, this.groundMaterial, 25, 30);
+        this.cubemap = new MyCubeMap(this, 125);
+        this.ground = new MyGround(this, this.groundMaterial, 125);
+        this.campfire = new MyCampfire(this, 50, -50);
+        this.voxelHill = new MyVoxelHill(this, 10, this.groundMaterial, 25, 30);
         this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
-        this.axis = new CGFaxis(this);
-
+        this.voxelHill3 = new MyVoxelHill(this, 7, this.groundMaterial, -50, 50);
+        this.voxelHill4 = new MyVoxelHill(this, 5, this.groundMaterial, -47, 40);
+        this.voxelHill5 = new MyVoxelHill(this, 5, this.groundMaterial, -40, 47);
+        this.voxelHill6 = new MyVoxelHill(this, 3, this.groundMaterial, -41, 41);
     }
     initLights() {
         this.setGlobalAmbientLight(0.0, 0.0, 0.0, 1.0);
@@ -98,7 +104,7 @@ class MyScene extends CGFscene {
         this.lights[1].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(65, 40, 65), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(50, 40, 50), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(1.0, 0.5, 0.2, 1.0);
@@ -117,7 +123,6 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
-        this.axis.display();
         
         this.lights[0].update();
         this.lights[1].update();
@@ -132,12 +137,21 @@ class MyScene extends CGFscene {
         this.house.display();
         this.voxelHill.display();
         this.voxelHill2.display();
+        this.voxelHill3.display();
+        this.voxelHill4.display();
+        this.voxelHill5.display();
+        this.voxelHill6.display();
         this.treeGroup.display();
-        this.treeRow.display();
         this.treeGroup2.display();
+        this.treeGroup3.display();
+        this.treeRow.display();
         this.treeRow2.display();
+        this.treeRow3.display();
+        this.treeRow4.display();
+        this.treeRow5.display();
         this.ground.display();
         this.cubemap.display();
+        this.campfire.display();
 
         // ---- END Primitive drawing section
     }

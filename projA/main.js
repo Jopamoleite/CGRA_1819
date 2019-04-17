@@ -19,6 +19,8 @@ serialInclude(['../lib/CGF.js',
             'MyCubeMap.js',
             'MyUnitCube.js',
             'MyGround.js',
+            'MyCampfire.js',
+            
 
 main=function()
 {

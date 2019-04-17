@@ -33,14 +33,14 @@ class MyPyramid extends CGFobject {
             this.vertices.push(caa, 0, -saa);
 
             //Each face has the same texture
-            this.texCoords.push(0.5, 0);
+            /*this.texCoords.push(0.5, 0);
             this.texCoords.push(0, 1);
-            this.texCoords.push(1, 1);
+            this.texCoords.push(1, 1);*/
 
             //The texture is placed with its center at the top point, instead of being repeated 
-            //this.texCoords.push(0.5, 0.5);
-            //this.texCoords.push(0.5+0.5*Math.cos(ang), 0.5+0.5*Math.sin(ang)); 
-            //this.texCoords.push(0.5+0.5*Math.cos(ang+alphaAng), 0.5+0.5*Math.sin(ang+alphaAng)); 
+            this.texCoords.push(0.5, 0.5);
+            this.texCoords.push(0.5+0.5*Math.cos(ang), 0.5+0.5*Math.sin(ang)); 
+            this.texCoords.push(0.5+0.5*Math.cos(ang+alphaAng), 0.5+0.5*Math.sin(ang+alphaAng)); 
 
             // triangle normal computed by cross product of two edges
             var normal= [
@@ -72,6 +72,11 @@ class MyPyramid extends CGFobject {
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
+    
+	updateTexCoords(coords) {
+		this.texCoords = [...coords];
+		this.updateTexCoordsGLBuffers();
+	}
     
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12

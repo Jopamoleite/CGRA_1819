@@ -11,10 +11,19 @@ class MyHouse extends CGFobject {
 
         this.initMaterials();
 
+        this.roofSides = 4;
         this.walls = new MyUnitCubeQuad(this.scene, this.wallDoorMaterial, this.wallWindowMaterial, this.wallMaterial, this.wallWindowMaterial, this.wallMaterial, this.wallMaterial);
-        this.roof = new MyPyramid(this.scene, 4, 1);
+        this.roof = new MyPyramid(this.scene, this.roofSides, 1);
         this.column = new MyPrism(this.scene, 10, 1);
         
+        this.roofCoords = [];
+
+        for(var i = 0; i < this.roofSides; i++){
+            this.roofCoords.push(0.5, 0);
+            this.roofCoords.push(0, 1);
+            this.roofCoords.push(1, 1);
+        }
+        this.roof.updateTexCoords(this.roofCoords);        
     }
 
     initMaterials(){

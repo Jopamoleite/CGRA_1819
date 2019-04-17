@@ -78,7 +78,9 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
         this.cubemap = new MyCubeMap(this, 125, this.skyTextureDay);
         this.ground = new MyGround(this, this.groundMaterial, 125);
-        this.lake = new MyLake(this, 20, 0, 0);
+
+        this.lake = new MyLake(this, 20, 35, 6);
+
         this.campfire = new MyCampfire(this, 40, -40);
         this.voxelHill = new MyVoxelHill(this, 10, this.groundMaterial, 25, 30);
         this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
@@ -124,7 +126,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(25, 25, 60), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(15, 25, 60), vec3.fromValues(0, 0, 0));
     }
 
     display() {

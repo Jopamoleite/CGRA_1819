@@ -26,8 +26,9 @@ class MyLake extends CGFobject {
         
         this.scene.pushMatrix();
         this.lakeMaterial.apply();
-        this.scene.translate(this.x, 2, this.z);
-        this.scene.scale(this.side, 0, this.side);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.scene.translate(this.x, this.z, 0.01);
+        this.scene.scale(this.side, this.side, 1);
         this.lakeQuad.display();
         this.scene.popMatrix();
 

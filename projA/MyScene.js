@@ -82,8 +82,8 @@ class MyScene extends CGFscene {
         
         //SUN
         this.lights[0].setPosition(0.0, 50 ,0.0, 1.0);
-        this.lights[0].setDiffuse(1.0, 0.86, 0.64, 1.0);
-        this.lights[0].setAmbient(1.0, 0.86, 0.64, 1.0);
+        this.lights[0].setDiffuse(1.0, 0.9, 0.45, 1.0);
+        this.lights[0].setAmbient(1.0, 0.9, 0.45, 1.0);
         this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[0].setConstantAttenuation(1);
         this.lights[0].setLinearAttenuation(0);
@@ -101,6 +101,17 @@ class MyScene extends CGFscene {
         this.lights[1].setQuadraticAttenuation(0);
         this.lights[1].disable();
         this.lights[1].update();
+
+        //CAMPFIRE
+        this.lights[2].setPosition(50, 0, -50, 1.0);
+        this.lights[2].setDiffuse(1, 0.58, 0.16, 1.0);
+        this.lights[2].setAmbient(1, 0.58, 0.16, 1.0);
+        this.lights[2].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[2].setConstantAttenuation(0);
+        this.lights[2].setLinearAttenuation(0);
+        this.lights[2].setQuadraticAttenuation(0.01);
+        this.lights[2].disable();
+        this.lights[2].update();
     }
     initCameras() {
         this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(50, 40, 50), vec3.fromValues(0, 0, 0));
@@ -119,16 +130,22 @@ class MyScene extends CGFscene {
 
         
         if(this.mode == 'Day'){
+            //DAY MODE
             this.lights[0].enable();
             this.lights[0].update();
             this.lights[1].disable();
             this.lights[1].update();
+            this.lights[2].disable();
+            this.lights[2].update();
         }
         else{
+            //NIGHT MODE
             this.lights[0].disable();
             this.lights[0].update();
             this.lights[1].enable();
             this.lights[1].update();
+            this.lights[2].enable();
+            this.lights[2].update();
         }
 
 

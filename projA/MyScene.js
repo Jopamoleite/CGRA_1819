@@ -80,8 +80,8 @@ class MyScene extends CGFscene {
         
         //SUN
         this.lights[0].setPosition(0.0, 50 ,0.0, 1.0);
-        this.lights[0].setDiffuse(1.0, 0.86, 0.64, 1.0);
-        this.lights[0].setAmbient(1.0, 0.86, 0.64, 1.0);
+        this.lights[0].setDiffuse(1.0, 0.9, 0.45, 1.0);
+        this.lights[0].setAmbient(1.0, 0.9, 0.45, 1.0);
         this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[0].setConstantAttenuation(1);
         this.lights[0].setLinearAttenuation(0);

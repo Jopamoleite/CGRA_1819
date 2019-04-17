@@ -31,7 +31,7 @@ class MyScene extends CGFscene {
         this.trunkMaterial = new CGFappearance(this);
         this.trunkMaterial.setAmbient(0.8, 0.4, 0.1, 1.0);
         this.trunkMaterial.setDiffuse(0.8, 0.4, 0.1, 1.0);
-        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.trunkMaterial.setShininess(10.0);
         this.trunkMaterial.setTexture(this.trunkTexture);
         this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -39,7 +39,7 @@ class MyScene extends CGFscene {
         this.treeTopMaterial = new CGFappearance(this);
         this.treeTopMaterial.setAmbient(0.8, 0.0, 0.6, 1.0);
         this.treeTopMaterial.setDiffuse(0.8, 0.0, 0.6, 1.0);
-        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -48,7 +48,7 @@ class MyScene extends CGFscene {
         this.groundMaterial = new CGFappearance(this);
         this.groundMaterial.setAmbient(0.7, 1, 0.5, 1);
         this.groundMaterial.setDiffuse(0.7, 1, 0.5, 1);
-        this.groundMaterial.setSpecular(0.2, 0.2, 0.2, 2);
+        this.groundMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.groundMaterial.setShininess(10.0);
         this.groundMaterial.setTexture(this.groundTexture);
         this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -79,26 +79,23 @@ class MyScene extends CGFscene {
         this.setGlobalAmbientLight(0.0, 0.0, 0.0, 1.0);
         
         //SUN
-        this.lights[0].setPosition(0.0, 20 ,0.0, 1.0);
+        this.lights[0].setPosition(0.0, 50 ,0.0, 1.0);
         this.lights[0].setDiffuse(1.0, 0.86, 0.64, 1.0);
         this.lights[0].setAmbient(1.0, 0.86, 0.64, 1.0);
         this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].setConstantAttenuation(0.1);
+        this.lights[0].setConstantAttenuation(1);
         this.lights[0].setLinearAttenuation(0);
         this.lights[0].setQuadraticAttenuation(0);
         this.lights[0].disable();
         this.lights[0].update();
             
         //MOON
-        this.lights[1].setPosition(0.0, 15, 0.0, 1.0);
-        /*this.lights[1].setDiffuse(0.22, 0.33, 1.0, 1.0);
+        this.lights[1].setPosition(0.0, 50, 0.0, 1.0);
+        this.lights[1].setDiffuse(0.22, 0.33, 1.0, 1.0);
         this.lights[1].setAmbient(0.22, 0.33, 1.0, 1.0);
-        this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);*/
-        this.lights[1].setDiffuse(0.0, 0.0, 1.0, 1.0);
-        this.lights[1].setAmbient(0.0, 0.0, 1.0, 1.0);
         this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[1].setConstantAttenuation(0);
-        this.lights[1].setLinearAttenuation(0);
+        this.lights[1].setLinearAttenuation(0.02);
         this.lights[1].setQuadraticAttenuation(0);
         this.lights[1].disable();
         this.lights[1].update();
@@ -106,12 +103,7 @@ class MyScene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(50, 40, 50), vec3.fromValues(0, 0, 0));
     }
-    setDefaultAppearance() {
-        this.setAmbient(1.0, 0.5, 0.2, 1.0);
-        this.setDiffuse(1.0, 0.5, 0.2, 1.0);
-        this.setSpecular(1.0, 0.5, 0.2, 1.0);
-        this.setShininess(100.0);
-    }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -124,11 +116,19 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         
-        this.lights[0].update();
-        this.lights[1].update();
+        if(this.mode == 'Day'){
+            this.lights[0].enable();
+            this.lights[0].update();
+            this.lights[1].disable();
+            this.lights[1].update();
+        }
+        else{
+            this.lights[0].disable();
+            this.lights[0].update();
+            this.lights[1].enable();
+            this.lights[1].update();
+        }
 
-        //Apply default appearance
-        this.setDefaultAppearance();
 
         this.enableTextures(this.enableTex);
 

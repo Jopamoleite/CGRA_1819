@@ -68,6 +68,7 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this, 125);
         this.ground = new MyGround(this, this.groundMaterial, 125);
         this.campfire = new MyCampfire(this, 50, -50);
+        this.lake = new MyLake(this, 20, 0, 0);
         this.voxelHill = new MyVoxelHill(this, 10, this.groundMaterial, 25, 30);
         this.voxelHill2 = new MyVoxelHill(this, 7, this.groundMaterial, -35, 0);
         this.voxelHill3 = new MyVoxelHill(this, 7, this.groundMaterial, -50, 50);
@@ -169,6 +170,7 @@ class MyScene extends CGFscene {
         this.ground.display();
         this.cubemap.display();
         this.campfire.display();
+        this.lake.display();
 
         // ---- END Primitive drawing section
     }

@@ -123,7 +123,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(50, 40, 50), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(Math.PI/4, 0.1, 500, vec3.fromValues(25, 25, 60), vec3.fromValues(0, 0, 0));
     }
 
     display() {

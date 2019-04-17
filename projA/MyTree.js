@@ -20,14 +20,14 @@ class MyTree extends CGFobject {
     setTopMaterial(){
         this.scene.setAmbient(0.8, 0.0, 0.6, 1.0);
         this.scene.setDiffuse(0.8, 0.0, 0.6, 1.0);
-        this.scene.setSpecular(0.2, 0.0, 0.15, 1.0);
+        this.scene.setSpecular(0.2, 0.2, 0.2, 1.0);
         this.scene.setShininess(10.0);
     }
 
     setTrunkMaterial(){
         this.scene.setAmbient(0.8, 0.4, 0.1, 1.0);
         this.scene.setDiffuse(0.8, 0.4, 0.1, 1.0);
-        this.scene.setSpecular(0.2, 0.1, 0.025, 1.0);
+        this.scene.setSpecular(0.2, 0.2, 0.2, 1.0);
         this.scene.setShininess(10.0);
     }
 

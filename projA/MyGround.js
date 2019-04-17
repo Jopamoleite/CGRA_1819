@@ -1,5 +1,5 @@
 /**
- * MyQuad
+ * MyGround
  * @constructor
  * @param scene - Reference to MyScene object
  */
@@ -20,7 +20,9 @@ class MyGround extends CGFobject {
 		this.ground.updateTexCoords(coords)
 	}
 
+
 	display(){
+
 		this.scene.groundMaterial.apply();
 		this.scene.pushMatrix();
 		this.scene.rotate(-Math.PI/2,1,0,0);

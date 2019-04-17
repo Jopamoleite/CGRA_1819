@@ -21,17 +21,18 @@ class MyVoxelHill extends CGFobject {
         this.botTexture = new CGFtexture(this.scene, 'images/hillBot.png');
 
         this.sideMaterial = new CGFappearance(this.scene);
-        this.sideMaterial.setAmbient(1, 1, 1, 1);
-        this.sideMaterial.setDiffuse(1, 1, 1, 1);
-        this.sideMaterial.setSpecular(1, 1, 1, 1);
+        this.sideMaterial.setAmbient(0.6, 0.6, 0.4, 1.0);
+        this.sideMaterial.setDiffuse(0.6, 0.6, 0.4, 1.0);
+        this.sideMaterial.setSpecular(0.2, 0.2, 0.2, 1.0);
         this.sideMaterial.setShininess(10.0);
         this.sideMaterial.setTexture(this.sideTexture);
         this.sideMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
         
         this.botMaterial = new CGFappearance(this.scene);
-        this.botMaterial.setAmbient(1, 1, 1, 1);
-        this.botMaterial.setDiffuse(1, 1, 1, 1);
-        this.botMaterial.setSpecular(1, 1, 1, 1);
+        this.botMaterial.setAmbient(0.6, 0.6, 0.4, 1);
+        this.botMaterial.setDiffuse(0.6, 0.6, 0.4, 1);
+        this.botMaterial.setSpecular(0.2, 0.2, 0.2, 1.0);
         this.botMaterial.setShininess(10.0);
         this.botMaterial.setTexture(this.botTexture);
         this.botMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -42,6 +43,7 @@ class MyVoxelHill extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.translate(this.startingX, 0.5, this.startingZ);
+
 
        var side = 1 + 2*(this.levels-1);
 

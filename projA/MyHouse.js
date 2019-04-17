@@ -26,46 +26,47 @@ class MyHouse extends CGFobject {
         this.pillarTexture = new CGFtexture(this.scene, 'images/pillar.png');
 
         this.roofMaterial = new CGFappearance(this.scene);
-        this.roofMaterial.setAmbient(1, 1, 1, 1);
-        this.roofMaterial.setDiffuse(1, 1, 1, 1);
-        this.roofMaterial.setSpecular(1, 1, 1, 1);
+        this.roofMaterial.setAmbient(0.65, 0.38, 0.33, 1);
+        this.roofMaterial.setDiffuse(0.65, 0.38, 0.33, 1);
+        this.roofMaterial.setSpecular(0.2, 0.2, 0.2, 1);
         this.roofMaterial.setShininess(10.0);
         this.roofMaterial.setTexture(this.roofTexture);
         this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.wallMaterial = new CGFappearance(this.scene);
-        this.wallMaterial.setAmbient(1, 1, 1, 1);
-        this.wallMaterial.setDiffuse(1, 1, 1, 1);
-        this.wallMaterial.setSpecular(1, 1, 1, 1);
+        this.wallMaterial.setAmbient(0.7, 0.7, 0.7, 1);
+        this.wallMaterial.setDiffuse(0.7, 0.7, 0.7, 1);
+        this.wallMaterial.setSpecular(0.2, 0.2, 0.2, 1);
         this.wallMaterial.setShininess(10.0);
         this.wallMaterial.setTexture(this.wallTexture);
         this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.wallDoorMaterial = new CGFappearance(this.scene);
-        this.wallDoorMaterial.setAmbient(1, 1, 1, 1);
-        this.wallDoorMaterial.setDiffuse(1, 1, 1, 1);
-        this.wallDoorMaterial.setSpecular(1, 1, 1, 1);
+        this.wallDoorMaterial.setAmbient(0.7, 0.7, 0.7, 1);
+        this.wallDoorMaterial.setDiffuse(0.7, 0.7, 0.7, 1);
+        this.wallDoorMaterial.setSpecular(0.2, 0.2, 0.2, 1);
         this.wallDoorMaterial.setShininess(10.0);
         this.wallDoorMaterial.setTexture(this.wallDoorTexture);
         this.wallDoorMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.wallWindowMaterial = new CGFappearance(this.scene);
-        this.wallWindowMaterial.setAmbient(1, 1, 1, 1);
-        this.wallWindowMaterial.setDiffuse(1, 1, 1, 1);
-        this.wallWindowMaterial.setSpecular(1, 1, 1, 1);
+        this.wallWindowMaterial.setAmbient(0.7, 0.7, 0.7, 1);
+        this.wallWindowMaterial.setDiffuse(0.7, 0.7, 0.7, 1);
+        this.wallWindowMaterial.setSpecular(0.3, 0.3, 0.3, 1);
         this.wallWindowMaterial.setShininess(10.0);
         this.wallWindowMaterial.setTexture(this.wallWindowTexture);
         this.wallWindowMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.columnMaterial = new CGFappearance(this.scene);
-        this.columnMaterial.setAmbient(1, 1, 1, 1);
-        this.columnMaterial.setDiffuse(1, 1, 1, 1);
-        this.columnMaterial.setSpecular(1, 1, 1, 1);
+        this.columnMaterial.setAmbient(0.8, 0.8, 0.8, 1);
+        this.columnMaterial.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.columnMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.columnMaterial.setShininess(10.0);
         this.columnMaterial.setTexture(this.pillarTexture);
         this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
     }
+
 
     display() {
         

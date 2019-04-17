@@ -14,6 +14,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayNormals = false;
         this.enableTex = true;
+        this.mode = 'Day';
 
         //Background color
         this.gl.clearColor(0.7, 0.7, 0.7, 1.0);
@@ -29,26 +30,26 @@ class MyScene extends CGFscene {
         this.treeTopTexture = new CGFtexture(this, 'images/TreeTop.png');
         
         this.trunkMaterial = new CGFappearance(this);
-        this.trunkMaterial.setAmbient(1, 1, 1, 1);
-        this.trunkMaterial.setDiffuse(1, 1, 1, 1);
-        this.trunkMaterial.setSpecular(1, 1, 1, 1);
+        this.trunkMaterial.setAmbient(0.8, 0.4, 0.1, 1.0);
+        this.trunkMaterial.setDiffuse(0.8, 0.4, 0.1, 1.0);
+        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.trunkMaterial.setShininess(10.0);
         this.trunkMaterial.setTexture(this.trunkTexture);
         this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.treeTopMaterial = new CGFappearance(this);
-        this.treeTopMaterial.setAmbient(1, 1, 1, 1);
-        this.treeTopMaterial.setDiffuse(1, 1, 1, 1);
-        this.treeTopMaterial.setSpecular(1, 1, 1, 1);
+        this.treeTopMaterial.setAmbient(0.8, 0.0, 0.6, 1.0);
+        this.treeTopMaterial.setDiffuse(0.8, 0.0, 0.6, 1.0);
+        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.groundTexture = new CGFtexture(this, 'images/hillTop.png');
         this.groundMaterial = new CGFappearance(this);
-        this.groundMaterial.setAmbient(1, 1, 1, 1);
-        this.groundMaterial.setDiffuse(1, 1, 1, 1);
-        this.groundMaterial.setSpecular(1, 1, 1, 1);
+        this.groundMaterial.setAmbient(0.7, 1, 0.5, 1);
+        this.groundMaterial.setDiffuse(0.7, 1, 0.5, 1);
+        this.groundMaterial.setSpecular(0.2, 0.2, 0.2, 2);
         this.groundMaterial.setShininess(10.0);
         this.groundMaterial.setTexture(this.groundTexture);
         this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -69,17 +70,30 @@ class MyScene extends CGFscene {
 
     }
     initLights() {
-        this.setGlobalAmbientLight(0.6, 0.6, 0.6, 1.0);
-
-        this.lights[0].setPosition(0.0,0.5,2.0, 1.0);
-        this.lights[0].setDiffuse(1.0, 0.5, 0.0, 1.0);
-        this.lights[0].setSpecular(0.0, 0.0, 0.0, 1.0);
+        this.setGlobalAmbientLight(0.0, 0.0, 0.0, 1.0);
+        
+        //SUN
+        this.lights[0].setPosition(0.0, 20 ,0.0, 1.0);
+        this.lights[0].setDiffuse(1.0, 0.86, 0.64, 1.0);
+        this.lights[0].setAmbient(1.0, 0.86, 0.64, 1.0);
+        this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setConstantAttenuation(0.1);
+        this.lights[0].setLinearAttenuation(0);
+        this.lights[0].setQuadraticAttenuation(0);
         this.lights[0].disable();
         this.lights[0].update();
-
-        this.lights[1].setPosition(2.0, 0.5, 0.0, 1.0);
-        this.lights[1].setDiffuse(0.0, 0.0, 0.0, 1.0);
-        this.lights[1].setSpecular(1.0, 0.6, 0.1, 1.0);
+            
+        //MOON
+        this.lights[1].setPosition(0.0, 15, 0.0, 1.0);
+        /*this.lights[1].setDiffuse(0.22, 0.33, 1.0, 1.0);
+        this.lights[1].setAmbient(0.22, 0.33, 1.0, 1.0);
+        this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);*/
+        this.lights[1].setDiffuse(0.0, 0.0, 1.0, 1.0);
+        this.lights[1].setAmbient(0.0, 0.0, 1.0, 1.0);
+        this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[1].setConstantAttenuation(0);
+        this.lights[1].setLinearAttenuation(0);
+        this.lights[1].setQuadraticAttenuation(0);
         this.lights[1].disable();
         this.lights[1].update();
     }

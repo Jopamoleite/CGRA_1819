@@ -18,14 +18,14 @@ class MyBigTree extends CGFobject {
     setTopMaterial(){
         this.scene.setAmbient(1.0, 0.86, 0.64, 1.0);
         this.scene.setDiffuse(1.0, 0.86, 0.64, 1.0);
-        this.scene.setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.scene.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.scene.setShininess(10.0);
     }
 
     setTrunkMaterial(){
         this.scene.setAmbient(0.8, 0.4, 0.1, 1.0);
         this.scene.setDiffuse(0.8, 0.4, 0.1, 1.0);
-        this.scene.setSpecular(0.2, 0.2, 0.2, 1.0);
+        this.scene.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.scene.setShininess(10.0);
     }
 

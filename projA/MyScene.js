@@ -37,9 +37,9 @@ class MyScene extends CGFscene {
         this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.treeTopMaterial = new CGFappearance(this);
-        this.treeTopMaterial.setAmbient(0.8, 0.0, 0.6, 1.0);
-        this.treeTopMaterial.setDiffuse(0.8, 0.0, 0.6, 1.0);
-        this.treeTopMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.treeTopMaterial.setAmbient(1.0, 0.86, 0.64, 1.0);
+        this.treeTopMaterial.setDiffuse(1.0, 0.86, 0.64, 1.0);
+        this.treeTopMaterial.setSpecular(1.0, 1.0, 1.0, 1.0);
         this.treeTopMaterial.setShininess(10.0);
         this.treeTopMaterial.setTexture(this.treeTopTexture);
         this.treeTopMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -63,6 +63,8 @@ class MyScene extends CGFscene {
         this.treeRow3 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -20.0, 23.0);
         this.treeRow4 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 51.0);
         this.treeRow5 = new MyTreeRowPatch(this, this.trunkMaterial, this.treeTopMaterial, -5.0, 58.0);
+        
+        this.bigTree = new MyBigTree(this, this.trunkMaterial, this.treeTopMaterial, -40, -40);
 
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
         this.cubemap = new MyCubeMap(this, 125);
@@ -152,6 +154,7 @@ class MyScene extends CGFscene {
         this.ground.display();
         this.cubemap.display();
         this.campfire.display();
+        this.bigTree.display();
 
         // ---- END Primitive drawing section
     }

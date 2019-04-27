@@ -16,11 +16,11 @@ void main() {
 	
 	vTextureCoord = aTextureCoord;
 
-	vec4 filter = texture2D(uSampler2, aTextureCoord) * vec4(1.0, sin(timeFactor), 1.0, 1.0);
+	vec4 mapCoords = texture2D(uSampler2, vec2(timeFactor*.01,timeFactor*.01)+vTextureCoord);
 
-	float extraY = filter.y*normScale;
+	vec3 offset = aVertexNormal*sin(timeFactor)*0.01*mapCoords.b*normScale;
 	
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0) + vec4(0.0, extraY, 0.0, 0.0);
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
 }
 

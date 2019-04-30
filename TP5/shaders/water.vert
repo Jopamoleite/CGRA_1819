@@ -13,16 +13,14 @@ uniform float normScale;
 uniform float timeFactor;
 
 void main() {
-
-	vec3 offset=vec3(0.0,0.0,0.0);
 	
 	vTextureCoord = aTextureCoord;
 
-	vec4 filter = texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord);
+	vec4 mapCoords = texture2D(uSampler2, vec2(timeFactor*.01,timeFactor*.01)+vTextureCoord);
+
+	vec3 offset = aVertexNormal*sin(timeFactor)*0.01*mapCoords.b*normScale;
 	
-	offset = aVertexNormal*normScale*0.005*sin(timeFactor/2.0)*filter.b;
-	
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset, 1.0);
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
 }
 

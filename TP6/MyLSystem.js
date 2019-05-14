@@ -19,12 +19,12 @@ class MyLSystem extends CGFobject {
     initGrammar(){
         this.grammar = {
             "F": new MyRectangle(this.scene, 0.2, 1),
-            "X": new MyRectangle(this.scene, 0.5, 0.5)
+            "X": new MyRectangle(this.scene, 0.5, 0.5),
         };
     }
 
 
-    // gera o sistema L com os parâmetros atuais da cena
+    // gera o sistema L com os parï¿½metros atuais da cena
     generate(_axiom, _productions, _angle, _iterations, _scale){
         // copia o axioma da cena para iniciar a sequÃªncia de desenvolvimento
         this.axiom = _axiom;
@@ -104,6 +104,19 @@ class MyLSystem extends CGFobject {
                     // pop
                     this.scene.popMatrix();
                     break;
+                case "\\":
+                    this.scene.rotate(this.angle,1,0,0);
+                    break;
+                case "/":
+                    this.scene.rotate(-this.angle,1,0,0);
+                    break;
+                case "^":
+                    this.scene.rotate(this.angle,0,1,0);
+                    break;
+                case "&":
+                    this.scene.rotate(-this.angle,0,1,0);
+                    break;
+                
 
                 // processa primitiva definida na gramatica, se existir
                 default:

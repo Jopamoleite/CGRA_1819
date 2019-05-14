@@ -8,15 +8,15 @@ class MyBranch extends CGFobject{
         super(scene);
         this.cylinder = new MyCylinder(this.scene, 3);
         
-        this.trunkMaterial = new CGFappearance(this.scene);
-        this.trunkMaterial.setAmbient(0.8, 0.4, 0.1, 1.0);
-        this.trunkMaterial.setDiffuse(0.8, 0.4, 0.1, 1.0);
-        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
-        this.trunkMaterial.setShininess(10.0);
+        this.branchMaterial = new CGFappearance(this.scene);
+        this.branchMaterial.setAmbient(0.8, 0.4, 0.1, 1.0);
+        this.branchMaterial.setDiffuse(0.8, 0.4, 0.1, 1.0);
+        this.branchMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.branchMaterial.setShininess(10.0);
     }
 
     display(){
-        this.trunkMaterial.apply();
+        this.branchMaterial.apply();
         this.cylinder.display();
     }
 }

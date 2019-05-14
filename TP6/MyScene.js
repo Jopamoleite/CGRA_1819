@@ -27,14 +27,20 @@ class MyScene extends CGFscene {
         this.angle = 30.0;
         this.iterations = 4;
         this.scaleFactor = 0.5;
-        this.lSystem = new MyLPlant(this);
+        //this.lSystem = new MyLSystem(this);
+        this.lsPlant = new MyLSPlant(this);
 
         this.doGenerate = function () {
-            this.lSystem.generate(
+            //this.lSystem.generate(
+            this.lsPlant.generate(
                 this.axiom,
                 {
                     "F": [ "FF" ],
+<<<<<<< HEAD
                     "X": [ "F[-X][X]F[-X]+X", "F[-X][x]+X", "F[+X]-X" ],
+=======
+                    "X": [ "F[-X][X]F[-X]+X", "F[-X][X]+X", "F[+X]-X", "F[/X][X]F[\\X]+X", "F[\X][X]/X", "F[/X]\X", "F[^X][X]F[&X]^X", "F[^X]&X", "F[&X]^X" ]
+>>>>>>> fbc82ec51b0884fa74a0b8dc546291bf3fe61738
                 },
                 this.angle,
                 this.iterations,
@@ -82,8 +88,7 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-
-        this.lSystem.display();
+        this.lsPlant.display();
 
         // ---- END Primitive drawing section
     }

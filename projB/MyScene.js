@@ -77,14 +77,14 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        this.house.display();
-        this.cubemap.display();
-        this.pushMatrix();
-        this.groundMaterial.apply();
-        this.rotate(-0.5*Math.PI, 1, 0, 0);
-        this.scale(60, 60, 1);
-        this.plane.display();
-        this.popMatrix();
+        //this.house.display();
+        //this.cubemap.display();
+        //this.pushMatrix();
+        //this.groundMaterial.apply();
+        //this.rotate(-0.5*Math.PI, 1, 0, 0);
+        //this.scale(60, 60, 1);
+        //this.plane.display();
+        //this.popMatrix();
         // ---- END Primitive drawing section
     }
 }

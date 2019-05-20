@@ -37,6 +37,7 @@ class MyScene extends CGFscene {
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
+        this.bird = new MyBird(this);
 
         //Objects connected to MyInterface
     }
@@ -77,14 +78,15 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        this.house.display();
+        this.bird.display();
+       /* this.house.display();
         this.cubemap.display();
         this.pushMatrix();
         this.groundMaterial.apply();
         this.rotate(-0.5*Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
         this.plane.display();
-        this.popMatrix();
+        this.popMatrix();*/
         // ---- END Primitive drawing section
     }
 }

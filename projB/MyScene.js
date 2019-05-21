@@ -23,14 +23,14 @@ class MyScene extends CGFscene {
 
         this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
         
-        this.groundTexture = new CGFtexture(this, 'images/terrain.png');
+        /*this.groundTexture = new CGFtexture(this, 'images/terrain.jpg');
         this.groundMaterial = new CGFappearance(this);
         this.groundMaterial.setAmbient(0.7, 1, 0.5, 1);
         this.groundMaterial.setDiffuse(0.7, 1, 0.5, 1);
         this.groundMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.groundMaterial.setShininess(10.0);
         this.groundMaterial.setTexture(this.groundTexture);
-        this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');*/
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -38,6 +38,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 3.0, 3.0, 4.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.bird = new MyBird(this);
+        this.terrain = new MyTerrain(this);
 
         //Objects connected to MyInterface
     }
@@ -78,7 +79,8 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        this.bird.display();
+        this.terrain.display();
+        //this.bird.display();
        /* this.house.display();
         this.cubemap.display();
         this.pushMatrix();

@@ -7,14 +7,21 @@ class MyBird extends CGFobject {
         super(scene);
 
         this.initMaterials();
-        this.bodySmallCone = new MyCone(this.scene, 10);
-        this.bodyLongCone = new MyCone(this.scene, 10);
-        this.bodyCylinder = new MyCylinder(this.scene, 10);   
+
+        this.body = new MyCylinder(this.scene, 15);
+        this.neck = new MyCone(this.scene, 15);
+        this.tail = new MyCone(this.scene, 15);
+        this.beak = new MyPyramid(this.scene, 4);     
+        this.head = new MySphere(this.scene, 1, 50, 50);
+        this.rightWing = new MyWing(this.scene);
+        this.leftWing = new MyWing(this.scene);
+        this.rightEye = new MySphere(this.scene, 1, 16, 15);
+        this.leftEye = new MySphere(this.scene, 1, 16, 15);
     }
 
     initMaterials(){
         
-        /*this.roofTexture = new CGFtexture(this.scene, 'images/bricks.png');
+        this.roofTexture = new CGFtexture(this.scene, 'images/bricks.png');
         this.wallTexture = new CGFtexture(this.scene, 'images/stone.png');
         this.wallDoorTexture = new CGFtexture(this.scene, 'images/wallWithDoor.png');
         this.wallWindowTexture = new CGFtexture(this.scene, 'images/wallWithWindow.png');
@@ -58,50 +65,69 @@ class MyBird extends CGFobject {
         this.columnMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.columnMaterial.setShininess(10.0);
         this.columnMaterial.setTexture(this.pillarTexture);
-        this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');*/
+        this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
     }
 
 
     display() {
+
         this.scene.pushMatrix();
-        this.scene.scale(1.5,1.5,1.5);
+        this.scene.scale(0.5, 0.5, 0.5);
         
         this.scene.pushMatrix();
-        this.scene.translate(0,3,0);
-        
-        this.scene.pushMatrix();
-        this.scene.scale(0.25,0.5,0.25);
-        this.scene.rotate(Math.PI/4, 1.0, 0.0, 0.0);
-        this.bodyCylinder.display();
-        this.scene.popMatrix();
-        
-        /*this.scene.pushMatrix();
-        this.scene.translate(this.wallSide-1,0,-this.wallSide+1);
-        this.scene.scale(0.25,3,0.25);
-        this.column.display();
-        this.scene.popMatrix();
-        
-        this.scene.pushMatrix();
-        this.scene.translate(-this.wallSide+1,0,-this.wallSide+1);
-        this.scene.scale(0.25,3,0.25);
-        this.column.display();
-        this.scene.popMatrix();        
-        
-        this.scene.pushMatrix();
-        this.scene.scale(this.wallSide, this.wallSide, this.wallSide);
-        this.scene.translate(0.0, 0.5, 0.0);
-        this.walls.display();
+        this.scene.translate(0, 0, -0.25);
+        this.rightWing.display();
         this.scene.popMatrix();
 
-        this.roofMaterial.apply();
         this.scene.pushMatrix();
-        this.scene.translate(0.0, this.wallSide, 0.0);
-        this.scene.scale(this.roofSide, this.roofHeight, this.roofSide);
-        this.scene.rotate(Math.PI/4, 0.0, 1.0, 0.0);
-        this.roof.display();
+        this.scene.translate(0, 0, -0.25);
+        this.scene.rotate(-Math.PI, 0, 0, 1);
+        this.leftWing.display();
         this.scene.popMatrix();
-        this.scene.popMatrix();*/
+
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI/2, 1, 0, 0);
+        this.body.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 1);
+        this.scene.scale(1, 1, 0.5);
+        this.scene.rotate(Math.PI/2, 1, 0, 0);
+        this.neck.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.tail.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0.75, 2);
+        this.head.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0.75, 2.97);
+        this.scene.rotate(Math.PI/2, 1, 0, 0);
+        this.scene.scale(0.25, 0.25, 0.25);
+        this.beak.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.5, 1, 2.2);
+        this.scene.scale(0.5, 0.5, 0.5);
+        this.rightEye.display();
+        this.scene.popMatrix();
+        
+        this.scene.pushMatrix();
+        this.scene.translate(0.5, 1, 2.2);
+        this.scene.scale(0.5, 0.5, 0.5);
+        this.leftEye.display();
+        this.scene.popMatrix();
+
+        this.scene.popMatrix();
     }
 }
 

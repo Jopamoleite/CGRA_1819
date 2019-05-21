@@ -32,7 +32,7 @@ class MyTerrain extends CGFobject {
     initMaterials(){
         
         this.terrainTexture = new CGFtexture(this.scene, 'images/terrain.jpg');
-        this.terrainMap = new CGFtexture(this.scene, 'images/heightmap.jpg');
+        this.terrainMap = new CGFtexture(this.scene, 'images/heightmap4.jpg');
 
     }
 

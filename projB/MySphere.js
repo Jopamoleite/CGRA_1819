@@ -20,7 +20,7 @@ class MySphere extends CGFobject
         this.frontHalf.display();
         this.scene.pushMatrix();
         if(this.slices % 2 != 0)
-        this.scene.rotate(Math.PI/this.slices, 0, 0, 1);
+            this.scene.rotate(Math.PI/this.slices, 0, 0, 1);
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.backHalf.display();
         this.scene.popMatrix();

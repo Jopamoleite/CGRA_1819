@@ -43,6 +43,7 @@ class MyTerrain extends CGFobject {
         this.scene.pushMatrix();
         
         this.scene.scale(60,60,60);
+        this.scene.rotate(Math.PI/2, -1.0, 0, 0)
         this.appearance.apply();
         this.terrainMap.bind(1);
         this.terrainGradient.bind(2);

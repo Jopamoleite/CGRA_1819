@@ -50,7 +50,7 @@ class MyHalfSphere extends CGFobject
 
 		for (var i = 0; i <= this.stacks; i++)
 		{
-			for (var j = 0; j < this.slices; j++)
+			for (var j = 0; j <= this.slices; j++)
 			{
 				this.texCoords.push(j/this.slices, i/this.stacks);
 			}

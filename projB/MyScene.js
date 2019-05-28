@@ -67,7 +67,7 @@ class MyScene extends CGFscene {
 
         this.deltaT = this.newT - this.oldT;  
               
-        this.bird.update(this.newT*5);
+        this.bird.update(this.newT*2);
         
         this.oldT = this.newT;
     }

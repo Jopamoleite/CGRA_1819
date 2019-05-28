@@ -10,15 +10,15 @@ class MyBird extends CGFobject {
 
         this.time = 0;
 
-        this.body = new MyCylinder(this.scene, 16);
-        this.neck = new MyCone(this.scene, 16);
-        this.tail = new MyCone(this.scene, 16);
+        this.body = new MyCylinder(this.scene, 6);
+        this.neck = new MyCone(this.scene, 6);
+        this.tail = new MyCone(this.scene, 6);
         this.beak = new MyPyramid(this.scene, 4);     
-        this.head = new MySphere(this.scene, 1, 26, 10);
-        this.rightWing = new MyWing(this.scene);
-        this.leftWing = new MyWing(this.scene);
-        this.rightEye = new MySphere(this.scene, 1, 12, 10);
-        this.leftEye = new MySphere(this.scene, 1, 12, 10);
+        this.head = new MySphere(this.scene, 1, 10, 10);
+        this.rightWing = new MyRightWing(this.scene);
+        this.leftWing = new MyLeftWing(this.scene);
+        this.rightEye = new MySphere(this.scene, 1, 8, 5);
+        this.leftEye = new MySphere(this.scene, 1, 8, 5);
     }
 
     initMaterials(){
@@ -62,7 +62,7 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(0, Math.sin(this.time), 0);
+        this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
 
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 0.5);
@@ -75,7 +75,6 @@ class MyBird extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.25);
-        this.scene.rotate(-Math.PI, 0, 0, 1);
         this.featherMaterial.apply();
         this.leftWing.display();
         this.scene.popMatrix();

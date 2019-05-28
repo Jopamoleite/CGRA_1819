@@ -31,8 +31,8 @@ class MyTerrain extends CGFobject {
 
     initMaterials(){
         
-        this.terrainTexture = new CGFtexture(this.scene, 'images/terrain.jpg');
-        this.terrainMap = new CGFtexture(this.scene, 'images/heightmap4.jpg');
+        this.terrainTexture = new CGFtexture(this.scene, 'images/terrain2.jpg');
+        this.terrainMap = new CGFtexture(this.scene, 'images/heightmap2.jpg');
     	this.terrainGradient = new CGFtexture(this.scene, 'images/altimetry.png');
 
     }
@@ -49,6 +49,7 @@ class MyTerrain extends CGFobject {
         this.terrainGradient.bind(2);
         this.scene.setActiveShader(this.terrainShader);
         this.plane.display();
+        this.scene.setActiveShader(this.scene.defaultShader);
 
         this.scene.popMatrix();
     }

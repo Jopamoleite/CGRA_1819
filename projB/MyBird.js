@@ -62,7 +62,7 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        //this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
 
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 0.5);
@@ -70,13 +70,13 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.25);
         this.featherMaterial.apply();
-        this.rightWing.display();
+        this.leftWing.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.25);
         this.featherMaterial.apply();
-        this.leftWing.display();
+        this.rightWing.display();
         this.scene.popMatrix();
 
         this.featherMaterial.apply();  
@@ -131,8 +131,8 @@ class MyBird extends CGFobject {
 
     update(t){
         this.time = t;
-        this.leftWing.update(-t);
-        this.rightWing.update(t);
+        //this.leftWing.update(-t/2);
+        this.rightWing.update(t/2);
     }
 
 }

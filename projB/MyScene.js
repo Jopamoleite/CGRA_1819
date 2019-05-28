@@ -22,6 +22,9 @@ class MyScene extends CGFscene {
         this.setUpdatePeriod(50);
 
         this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
+        this.oldT = 0;
+        this.newT = 0;
+        this.deltaT = 0;
         
         /*this.groundTexture = new CGFtexture(this, 'images/terrain.jpg');
         this.groundMaterial = new CGFappearance(this);
@@ -60,6 +63,13 @@ class MyScene extends CGFscene {
     }
     update(t){
 
+        this.newT = t*0.001;
+
+        this.deltaT = this.newT - this.oldT;  
+              
+        this.bird.update(this.newT*5);
+        
+        this.oldT = this.newT;
     }
 
     display() {

@@ -8,6 +8,8 @@ class MyBird extends CGFobject {
 
         this.initMaterials();
 
+        this.time = 0;
+
         this.body = new MyCylinder(this.scene, 16);
         this.neck = new MyCone(this.scene, 16);
         this.tail = new MyCone(this.scene, 16);
@@ -59,6 +61,8 @@ class MyBird extends CGFobject {
 
 
     display() {
+        this.scene.pushMatrix();
+        this.scene.translate(0, Math.sin(this.time), 0);
 
         this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 0.5);
@@ -123,7 +127,15 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
+        this.scene.popMatrix();
     }
+
+    update(t){
+        this.time = t;
+        this.leftWing.update(-t);
+        this.rightWing.update(t);
+    }
+
 }
 
 

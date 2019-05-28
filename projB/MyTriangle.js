@@ -7,6 +7,7 @@ class MyTriangle extends CGFobject {
 	constructor(scene) {
 		super(scene);
 		this.initBuffers();
+		this.time = 0;
 	}
 	initBuffers() {
 		this.vertices = [

@@ -31,8 +31,6 @@ class MyBird extends CGFobject {
         this.featherTexture = new CGFtexture(this.scene, 'images/feather.png');
         this.eyeTexture = new CGFtexture(this.scene, 'images/eye.png');
         this.beakTexture = new CGFtexture(this.scene, 'images/beak.png');
-        this.wallWindowTexture = new CGFtexture(this.scene, 'images/wallWithWindow.png');
-        this.pillarTexture = new CGFtexture(this.scene, 'images/pillar.png');
 
         this.featherMaterial = new CGFappearance(this.scene);
         this.featherMaterial.setTexture(this.featherTexture);
@@ -45,22 +43,6 @@ class MyBird extends CGFobject {
         this.beakMaterial = new CGFappearance(this.scene);
         this.beakMaterial.setTexture(this.beakTexture);
         this.beakMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.wallWindowMaterial = new CGFappearance(this.scene);
-        this.wallWindowMaterial.setAmbient(0.7, 0.7, 0.7, 1);
-        this.wallWindowMaterial.setDiffuse(0.7, 0.7, 0.7, 1);
-        this.wallWindowMaterial.setSpecular(0.3, 0.3, 0.3, 1);
-        this.wallWindowMaterial.setShininess(10.0);
-        this.wallWindowMaterial.setTexture(this.wallWindowTexture);
-        this.wallWindowMaterial.setTextureWrap('REPEAT', 'REPEAT');
-        
-        this.columnMaterial = new CGFappearance(this.scene);
-        this.columnMaterial.setAmbient(0.8, 0.8, 0.8, 1);
-        this.columnMaterial.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.columnMaterial.setSpecular(0.0, 0.0, 0.0, 1);
-        this.columnMaterial.setShininess(10.0);
-        this.columnMaterial.setTexture(this.pillarTexture);
-        this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
     }
 

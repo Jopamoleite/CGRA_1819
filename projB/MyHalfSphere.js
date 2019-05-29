@@ -4,12 +4,17 @@
 */
 class MyHalfSphere extends CGFobject
 {
-	constructor(scene, radius, slices, stacks)
+	constructor(scene, radius, slices, stacks, reverse)
 	{
         super(scene);
         this.radius = radius;
 		this.slices = slices;
         this.stacks = stacks;
+		if(reverse != undefined){
+			this.reverse = true;
+		}else{
+			this.reverse = false;
+		}
 
 		this.initBuffers();
 	};
@@ -37,16 +42,31 @@ class MyHalfSphere extends CGFobject
 			}
 		}
 
-		for (var i = 0; i < this.stacks; i++)
-		{
-			for (var j = 0; j < this.slices - 1; j++)
+		if(this.reverse){
+			for (var i = 0; i < this.stacks; i++)
 			{
-				this.indices.push(i * this.slices + j, i * this.slices + j + 1, (i + 1) * this.slices + j);
-				this.indices.push(i * this.slices + j + 1, (i + 1) * this.slices + j + 1, (i + 1) * this.slices + j);
+				for (var j = 0; j < this.slices - 1; j++)
+				{
+					this.indices.push(i * this.slices + j + 1, i * this.slices + j, (i + 1) * this.slices + j);
+					this.indices.push((i + 1) * this.slices + j + 1, i * this.slices + j + 1,  (i + 1) * this.slices + j);
+				}
+	
+				this.indices.push(i * this.slices, i * this.slices + this.slices - 1,  (i + 1) * this.slices + this.slices - 1);
+				this.indices.push(i * this.slices + this.slices, i * this.slices,  (i + 1) * this.slices + this.slices - 1);
 			}
 
-			this.indices.push(i * this.slices + this.slices - 1, i * this.slices, (i + 1) * this.slices + this.slices - 1);
-			this.indices.push(i * this.slices, i * this.slices + this.slices, (i + 1) * this.slices + this.slices - 1);
+		}else{
+			for (var i = 0; i < this.stacks; i++)
+			{
+				for (var j = 0; j < this.slices - 1; j++)
+				{
+					this.indices.push(i * this.slices + j, i * this.slices + j + 1, (i + 1) * this.slices + j);
+					this.indices.push(i * this.slices + j + 1, (i + 1) * this.slices + j + 1, (i + 1) * this.slices + j);
+				}
+	
+				this.indices.push(i * this.slices + this.slices - 1, i * this.slices, (i + 1) * this.slices + this.slices - 1);
+				this.indices.push(i * this.slices, i * this.slices + this.slices, (i + 1) * this.slices + this.slices - 1);
+			}
 		}
 		
 		this.primitiveType = this.scene.gl.TRIANGLES;

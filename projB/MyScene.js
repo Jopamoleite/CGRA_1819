@@ -34,6 +34,8 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.branch = new MyTreeBranch(this);
+        this.nest = new MyNest(this);
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this, 0.0, 0.0, 0.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
@@ -104,8 +106,10 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        this.nest.display();
+        //this.branch.display();
         //this.terrain.display();
-        this.bird.display();
+        //this.bird.display();
        /* this.house.display();
         this.cubemap.display();
         this.pushMatrix();

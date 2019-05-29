@@ -21,7 +21,6 @@ class MyCone extends CGFobject {
 
             this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
             this.indices.push(i, i+1, this.slices+1);
-            this.indices.push(i+1, i, this.slices+1);
             if(i % 2 == 0){
                 this.texCoords.push(0, 1);
             }else{

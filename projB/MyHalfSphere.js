@@ -33,6 +33,7 @@ class MyHalfSphere extends CGFobject
 				var z = this.radius * Math.sin(phi * i);
 				this.vertices.push(x, y, z);
 				this.normals.push(x, y, z);
+				this.texCoords.push(((Math.cos(phi*i)*Math.cos(theta*j))+1)/2, 1 - ((Math.cos(phi*i)*Math.sin(theta*j))+1)/2);
 			}
 		}
 
@@ -47,15 +48,7 @@ class MyHalfSphere extends CGFobject
 			this.indices.push(i * this.slices + this.slices - 1, i * this.slices, (i + 1) * this.slices + this.slices - 1);
 			this.indices.push(i * this.slices, i * this.slices + this.slices, (i + 1) * this.slices + this.slices - 1);
 		}
-
-		for (var i = 0; i <= this.stacks; i++)
-		{
-			for (var j = 0; j <= this.slices; j++)
-			{
-				this.texCoords.push(j/this.slices, i/this.stacks);
-			}
-		}
-
+		
 		this.primitiveType = this.scene.gl.TRIANGLES;
 
 		this.initGLBuffers();

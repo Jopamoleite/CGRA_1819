@@ -9,6 +9,11 @@ class MyBird extends CGFobject {
         this.initMaterials();
 
         this.time = 0;
+        this.deltaT = 0;
+        this.rotation = 0;
+        this.speed = 0;
+        this.position = [0, 0, 0];
+
 
         this.body = new MyCylinder(this.scene, 6);
         this.neck = new MyCone(this.scene, 6);
@@ -62,10 +67,12 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        //this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        this.scene.translate(this.position[0], this.position[1], this.position[2]);
+        this.scene.rotate(this.rotation, 0, 1, 0);
 
         this.scene.pushMatrix();
-        this.scene.scale(0.5, 0.5, 0.5);
+        this.scene.scale(0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor);
         
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.25);
@@ -130,9 +137,28 @@ class MyBird extends CGFobject {
     }
 
     update(t){
+        this.deltaT = t - this.time;
         this.time = t;
-        //this.leftWing.update(-t/2);
-        this.rightWing.update(t/2);
+        this.position[0] += (this.speed*0.01*this.scene.speedFactor/this.deltaT)*Math.sin(this.rotation);
+        this.position[2] += (this.speed*0.01*this.scene.speedFactor/this.deltaT)*Math.cos(this.rotation); 
+        this.leftWing.update(t*(this.speed/4+1)*this.scene.speedFactor);
+        this.rightWing.update(-t*(this.speed/4+1)*this.scene.speedFactor);
+    }
+
+    turn(v){
+        this.rotation += v*Math.PI/16;
+    }
+
+    accelerate(v){
+        this.speed+=v;
+    }
+
+    resetPosition(){
+        this.speed = 0;
+        this.rotationNumber = 0;
+        this.deltaT = 0;
+        this.rotation = 0;
+        this.position = [0, 0, 0];
     }
 
 }

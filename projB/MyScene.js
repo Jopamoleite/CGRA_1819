@@ -22,9 +22,6 @@ class MyScene extends CGFscene {
         this.setUpdatePeriod(50);
 
         this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
-        this.oldT = 0;
-        this.newT = 0;
-        this.deltaT = 0;
         
         /*this.groundTexture = new CGFtexture(this, 'images/terrain.jpg');
         this.groundMaterial = new CGFappearance(this);
@@ -38,12 +35,15 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.plane = new Plane(this, 32);
-        this.house = new MyHouse(this, 3.0, 3.0, 4.0);
+        this.house = new MyHouse(this, 0.0, 0.0, 0.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
 
         //Objects connected to MyInterface
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -62,15 +62,29 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     update(t){
-
-        this.newT = t*0.001;
-
-        this.deltaT = this.newT - this.oldT;  
-              
-        this.bird.update(this.newT*2);
-        
-        this.oldT = this.newT;
+        this.checkKeys();
+        this.bird.update(t*0.001*2);
     }
+    checkKeys() {
+        if (this.gui.isKeyPressed("KeyW")) {
+            if(this.bird.speed <=5)
+                this.bird.accelerate(1);
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            if(this.bird.speed > 0)
+                this.bird.accelerate(-1);
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            this.bird.turn(1);
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            this.bird.turn(-1);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            this.bird.resetPosition();
+        }
+    }
+        
 
     display() {
         // ---- BEGIN Background, camera and axis setup

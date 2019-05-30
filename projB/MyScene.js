@@ -32,16 +32,28 @@ class MyScene extends CGFscene {
         this.groundMaterial.setTexture(this.groundTexture);
         this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');*/
 
+        //Initialize times
+        this.newTime = 0;
+        this.oldTime = 0;
+        this.deltaT = 0;
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.branch = new MyTreeBranch(this);
+        this.branch2 = new MyTreeBranch(this);
+        this.branch3 = new MyTreeBranch(this);
+        this.branch4 = new MyTreeBranch(this);
         this.nest = new MyNest(this);
         this.plane = new Plane(this, 32);
-        this.house = new MyHouse(this, 0.0, 0.0, 0.0);
+        this.house = new MyHouse(this, 2.0, 2.5, 3.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
+
+        //Random branch rotation initialization
+        this.branchRotationsNumbers = [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6), Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)];
+        this.branches = [this.branch, this.branch2, this.branch3, this.branch4];
 
         //Objects connected to MyInterface
         this.scaleFactor = 1;
@@ -66,7 +78,11 @@ class MyScene extends CGFscene {
     }
     update(t){
         this.checkKeys();
-        this.bird.update(t*0.001*2);
+        this.newTime = t*0.001;
+        this.deltaT = this.newTime - this.oldTime;
+        this.bird.update((this.oldTime+this.deltaT)*2);
+
+        this.oldTime = this.newTime;
     }
     checkKeys() {
         if (this.gui.isKeyPressed("KeyW")) {
@@ -111,12 +127,52 @@ class MyScene extends CGFscene {
 
         this.lightning.display();
         this.terrain.display();
+
+        this.pushMatrix();
+        this.translate(10, 4.25, -7);
+        this.scale(0.35, 0.35, 0.35);
         this.nest.display();
-        this.branch.display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(0, 4.25, 5);
+        this.scale(0.35, 0.35, 0.35);
+        this.rotate(Math.PI/6*this.branchRotationsNumbers[0], 0, 1, 0);
+        this.branches[0].display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(5, 4.25, 0);
+        this.scale(0.35, 0.35, 0.35);
+        this.rotate(Math.PI/6*this.branchRotationsNumbers[1], 0, 1, 0);
+        this.branches[1].display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(-2, 4.25, -10);
+        this.scale(0.35, 0.35, 0.35);
+        this.rotate(Math.PI/6*this.branchRotationsNumbers[2], 0, 1, 0);
+        this.branches[2].display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(15, 4.25, 6);
+        this.scale(0.35, 0.35, 0.35);
+        this.rotate(Math.PI/6*this.branchRotationsNumbers[3], 0, 1, 0);
+        this.branches[3].display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(10, 7.25, -8);
         this.bird.display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(-4, 4.25, -4);
         this.house.display();
+        this.popMatrix();
+
         this.cubemap.display();
-        this.terrain.display();
         // ---- END Primitive drawing section
     }
 }

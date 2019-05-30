@@ -51,8 +51,8 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        if(!this.pickingUp)
-            this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        //if(!this.pickingUp)
+         //   this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
         if(this.pickingUp){
             this.scene.translate(0, -Math.sin((this.pickingUpTime/4)*Math.PI)*3, 0);
         }
@@ -78,6 +78,7 @@ class MyBird extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.25);
+        this.scene.scale(1, 1, 1);
         this.featherMaterial.apply();
         this.rightWing.display();
         this.scene.popMatrix();
@@ -155,11 +156,11 @@ class MyBird extends CGFobject {
 
         if(!this.pickingUp){
             if(this.speed <= 1){
-                this.leftWing.update(this.time*this.scene.speedFactor);
-                this.rightWing.update(-this.time*this.scene.speedFactor);
+                this.leftWing.update(this.time*this.scene.speedFactor/2);
+                this.rightWing.update(-this.time*this.scene.speedFactor/2);
             }else{
-                this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor);
-                this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor);
+                this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor/2);
+                this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor/2);
             }
         }
         if(this.pickingUp){

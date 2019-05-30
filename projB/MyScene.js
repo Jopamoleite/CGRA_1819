@@ -126,7 +126,6 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         
-
         this.lightning.display();
         this.terrain.display();
 

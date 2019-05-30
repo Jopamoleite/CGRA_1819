@@ -20,12 +20,14 @@ class MyUnitCubeQuad extends CGFobject {
 
 	display(){
 
+        if(this.textureSide1 != undefined)
         this.textureSide1.apply();
 		this.scene.pushMatrix();
         this.scene.translate(0,0,0.5);
         this.quad.display();
         this.scene.popMatrix();
 
+        if(this.textureSide2 != undefined)
         this.textureSide2.apply();
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2,0,1,0);
@@ -33,6 +35,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        if(this.textureSide3 != undefined)
         this.textureSide3.apply();
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI,0,1,0);
@@ -40,6 +43,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        if(this.textureSide4 != undefined)
         this.textureSide4.apply();
         this.scene.pushMatrix();
         this.scene.rotate(3*Math.PI/2,0,1,0);
@@ -47,6 +51,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        if(this.textureSideTop != undefined)
         this.textureTop.apply();
         this.scene.setShininess(10.0);
         this.scene.pushMatrix();
@@ -55,12 +60,13 @@ class MyUnitCubeQuad extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
+        if(this.textureSideBot != undefined)
         this.textureBot.apply();
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2,1,0,0);
         this.scene.translate(0, 0, 0.5);
         this.quad.display();
         this.scene.popMatrix();
-
+        
 	}
 }

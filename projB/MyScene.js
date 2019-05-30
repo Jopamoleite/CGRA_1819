@@ -41,6 +41,7 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
+        this.lightning = new MyLightning(this);
 
         //Objects connected to MyInterface
         this.scaleFactor = 1;
@@ -106,6 +107,10 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        
+
+        this.lightning.display();
+        this.terrain.display();
         this.nest.display();
         this.branch.display();
         this.bird.display();

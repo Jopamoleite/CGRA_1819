@@ -13,6 +13,7 @@ class MyBird extends CGFobject {
         this.rotation = 0;
         this.speed = 0;
         this.position = [0, 0, 0];
+        this.pickingUpTime = 0;
         this.pickingUp = false;
 
 
@@ -52,10 +53,19 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         if(!this.pickingUp)
             this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
-        if(this.pickingUp)
-            this.scene.translate(0, Math.sin((this.time/2)*Math.PI)*3, 0)
+        if(this.pickingUp){
+            this.scene.translate(0, -Math.sin((this.pickingUpTime/4)*Math.PI)*3, 0);
+        }
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.rotation, 0, 1, 0);
+        
+        if(this.pickingUp){
+            if(this.pickingUpTime >= 2){
+                this.scene.rotate(-Math.PI/8, 1, 0, 0);
+            }else{
+                this.scene.rotate(Math.PI/4, 1, 0, 0);
+            }
+        }
 
         this.scene.pushMatrix();
         this.scene.scale(0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor);
@@ -98,7 +108,7 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, 0.75, 2.97);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
-        this.scene.scale(0.25, 0.25, 0.25);
+        this.scene.scale(0.25, 0.5, 0.25);
         this.beakMaterial.apply();
         this.beak.display();
         this.scene.popMatrix();
@@ -124,18 +134,36 @@ class MyBird extends CGFobject {
 
     update(t){
         this.deltaT = t;
-        this.time += this.deltaT;
+        if(!this.pickingUp)
+            this.time += this.deltaT;
         this.position[0] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.sin(this.rotation);
         this.position[2] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.cos(this.rotation); 
+        if(this.pickingUpTime >= 4){
+            this.pickingUp = false;    
+            this.pickingUpTime = 0;        
+        }
+        
+        if(this.pickingUpTime >= 2){
+            if(this.speed <= 1){
+                this.leftWing.update((this.time+this.pickingUpTime)*this.scene.speedFactor);
+                this.rightWing.update(-(this.time+this.pickingUpTime)*this.scene.speedFactor);
+            }else{
+                this.leftWing.update((this.time+this.pickingUpTime)*(this.speed/4 + 1)*this.scene.speedFactor);
+                this.rightWing.update(-(this.time+this.pickingUpTime)*(this.speed/4 + 1)*this.scene.speedFactor);
+            }
+        }
+
         if(!this.pickingUp){
             if(this.speed <= 1){
                 this.leftWing.update(this.time*this.scene.speedFactor);
                 this.rightWing.update(-this.time*this.scene.speedFactor);
-    
             }else{
                 this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor);
                 this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor);
             }
+        }
+        if(this.pickingUp){
+            this.pickingUpTime+=this.deltaT;
         }
     }
 

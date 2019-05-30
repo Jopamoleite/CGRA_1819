@@ -42,7 +42,7 @@ class MyLSystem extends CGFobject {
         this.scale = Math.pow(_scale, this.iterations-1);
 
         // desenvolve a sequencia de desenvolvimento do Sistema L
-        this.iterate()
+        this.iterate();
      }
 
   

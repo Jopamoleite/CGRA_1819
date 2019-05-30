@@ -67,6 +67,7 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.bird.update(t*0.001*2);
+        this.lightning.update(t);
     }
     checkKeys() {
         if (this.gui.isKeyPressed("KeyW")) {
@@ -85,6 +86,10 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyR")) {
             this.bird.resetPosition();
+        }
+        if (this.gui.isKeyPressed("KeyL")) {
+            this.lightning = new MyLightning(this);
+            this.lightning.startAnimation();
         }
     }
         

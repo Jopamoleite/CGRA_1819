@@ -53,7 +53,8 @@ class MyLightning extends MyLSystem{
 
     update(t){
     	this.deltaT = t - this.time;
-		this.depth = (this.deltaT/1000)*this.axiom.length;
+		//this.depth = (this.deltaT/1000)*this.axiom.length;
+		this.depth = this.axiom.length;
 		if(this.depth > this.axiom.length)
 			return;
 		this.display();

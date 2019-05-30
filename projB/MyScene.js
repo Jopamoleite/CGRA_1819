@@ -112,9 +112,7 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        
-
-        this.lightning.display();
+       
         this.terrain.display();
         this.nest.display();
         this.branch.display();
@@ -122,6 +120,7 @@ class MyScene extends CGFscene {
         this.house.display();
         this.cubemap.display();
         this.terrain.display();
+        this.lightning.display();
         // ---- END Primitive drawing section
     }
 }

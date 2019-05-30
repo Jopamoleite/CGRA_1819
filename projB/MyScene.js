@@ -77,11 +77,10 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     update(t){
-        this.checkKeys();
         this.newTime = t*0.001;
         this.deltaT = this.newTime - this.oldTime;
+        this.checkKeys();
         this.bird.update(this.deltaT*2);
-
         this.oldTime = this.newTime;
     }
     checkKeys() {

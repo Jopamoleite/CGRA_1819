@@ -101,6 +101,9 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyR")) {
             this.bird.resetPosition();
         }
+        if (this.gui.isKeyPressed("KeyP")) {
+            this.bird.pickUp(true);
+        }
     }
         
 

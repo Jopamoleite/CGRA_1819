@@ -13,6 +13,7 @@ class MyBird extends CGFobject {
         this.rotation = 0;
         this.speed = 0;
         this.position = [0, 0, 0];
+        this.pickingUp = false;
 
 
         this.body = new MyCylinder(this.scene, 6);
@@ -49,7 +50,10 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        if(!this.pickingUp)
+            this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        if(this.pickingUp)
+            this.scene.translate(0, Math.sin((this.time/2)*Math.PI)*3, 0)
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.rotation, 0, 1, 0);
 
@@ -123,14 +127,20 @@ class MyBird extends CGFobject {
         this.time += this.deltaT;
         this.position[0] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.sin(this.rotation);
         this.position[2] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.cos(this.rotation); 
-        if(this.speed <= 1){
-            this.leftWing.update(this.time*this.scene.speedFactor);
-            this.rightWing.update(-this.time*this.scene.speedFactor);
-
-        }else{
-            this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor);
-            this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor);
+        if(!this.pickingUp){
+            if(this.speed <= 1){
+                this.leftWing.update(this.time*this.scene.speedFactor);
+                this.rightWing.update(-this.time*this.scene.speedFactor);
+    
+            }else{
+                this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor);
+                this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor);
+            }
         }
+    }
+
+    pickUp(v){
+        this.pickingUp = v;
     }
 
     turn(v){

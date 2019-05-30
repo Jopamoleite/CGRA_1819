@@ -80,7 +80,7 @@ class MyScene extends CGFscene {
         this.checkKeys();
         this.newTime = t*0.001;
         this.deltaT = this.newTime - this.oldTime;
-        this.bird.update((this.oldTime+this.deltaT)*2);
+        this.bird.update(this.deltaT*2);
 
         this.oldTime = this.newTime;
     }

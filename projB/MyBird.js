@@ -119,8 +119,8 @@ class MyBird extends CGFobject {
     }
 
     update(t){
-        this.deltaT = t - this.time;
-        this.time = t;
+        this.deltaT = t;
+        this.time += this.deltaT;
         this.position[0] += (this.speed*0.01*this.scene.speedFactor/this.deltaT)*Math.sin(this.rotation);
         this.position[2] += (this.speed*0.01*this.scene.speedFactor/this.deltaT)*Math.cos(this.rotation); 
         if(this.speed <= 1){

@@ -77,7 +77,6 @@ class MyLSystem extends CGFobject {
     display(){
         this.scene.pushMatrix();
         this.scene.scale(this.scale, this.scale, this.scale);
-
         var i;
 
         // percorre a cadeia de caracteres
@@ -124,7 +123,11 @@ class MyLSystem extends CGFobject {
 
                     if ( primitive )
                     {
+                        this.scene.pushMatrix();
+                        this.scene.scale(0.05,1.0,1.0);
+                        this.scene.translate(0.0, 0.49, 0.0);
                         primitive.display();
+                        this.scene.popMatrix();
                         this.scene.translate(0, 1, 0);
                     }
                     break;

@@ -13,7 +13,7 @@ class MyNest extends CGFobject {
 
     initMaterials(){
         
-        this.woodTexture = new CGFtexture(this.scene, 'images/Trunk2.png');
+        this.woodTexture = new CGFtexture(this.scene, 'images/nest.png');
 
         this.woodMaterial = new CGFappearance(this.scene);
         this.woodMaterial.setTexture(this.woodTexture);
@@ -23,7 +23,7 @@ class MyNest extends CGFobject {
     display(){
         this.scene.pushMatrix();
 
-        this.scene.scale(3, 1, 3);
+        this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.scene.translate(0, -1, 0);
 

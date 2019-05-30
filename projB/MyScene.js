@@ -36,6 +36,7 @@ class MyScene extends CGFscene {
         this.newTime = 0;
         this.oldTime = 0;
         this.deltaT = 0;
+        this.startAnimationTime = 0;
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -81,7 +82,7 @@ class MyScene extends CGFscene {
         this.deltaT = this.newTime - this.oldTime;
         this.checkKeys();
         this.bird.update(this.deltaT*2);
-
+        this.lightning.update(this.newTime);
         this.oldTime = this.newTime;
     }
     checkKeys() {
@@ -103,8 +104,11 @@ class MyScene extends CGFscene {
             this.bird.resetPosition();
         }
         if (this.gui.isKeyPressed("KeyL")) {
-            this.lightning = new MyLightning(this);
-            this.lightning.startAnimation();
+            if(this.newTime - this.startAnimationTime >= 1){
+                this.startAnimationTime = this.newTime;
+                this.lightning = new MyLightning(this);
+                this.lightning.startAnimation(this.startAnimationTime);
+            }
         }
     }
         

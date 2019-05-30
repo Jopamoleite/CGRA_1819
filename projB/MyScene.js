@@ -12,7 +12,7 @@ class MyScene extends CGFscene {
         this.initLights();
 
         //Background color
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.1, 0.1, 0.1, 1.0);
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -34,17 +34,23 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.branch = new MyTreeBranch(this);
+        this.nest = new MyNest(this);
         this.plane = new Plane(this, 32);
-        this.house = new MyHouse(this, 3.0, 3.0, 4.0);
+        this.house = new MyHouse(this, 0.0, 0.0, 0.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
 
         //Objects connected to MyInterface
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
+        this.lights[0].setAmbient(1.0, 1.0, 1.0, 1.0);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
@@ -59,8 +65,29 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     update(t){
-
+        this.checkKeys();
+        this.bird.update(t*0.001*2);
     }
+    checkKeys() {
+        if (this.gui.isKeyPressed("KeyW")) {
+            if(this.bird.speed <=5)
+                this.bird.accelerate(1);
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            if(this.bird.speed > 0)
+                this.bird.accelerate(-1);
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            this.bird.turn(1);
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            this.bird.turn(-1);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            this.bird.resetPosition();
+        }
+    }
+        
 
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -84,15 +111,12 @@ class MyScene extends CGFscene {
 
         this.lightning.display();
         this.terrain.display();
-        //this.bird.display();
-       /* this.house.display();
+        this.nest.display();
+        this.branch.display();
+        this.bird.display();
+        this.house.display();
         this.cubemap.display();
-        this.pushMatrix();
-        this.groundMaterial.apply();
-        this.rotate(-0.5*Math.PI, 1, 0, 0);
-        this.scale(60, 60, 1);
-        this.plane.display();
-        this.popMatrix();*/
+        this.terrain.display();
         // ---- END Primitive drawing section
     }
 }

@@ -4,12 +4,17 @@
 */
 class MyHalfSphere extends CGFobject
 {
-	constructor(scene, radius, slices, stacks)
+	constructor(scene, radius, slices, stacks, reverse)
 	{
         super(scene);
         this.radius = radius;
 		this.slices = slices;
         this.stacks = stacks;
+		if(reverse != undefined){
+			this.reverse = true;
+		}else{
+			this.reverse = false;
+		}
 
 		this.initBuffers();
 	};
@@ -33,29 +38,37 @@ class MyHalfSphere extends CGFobject
 				var z = this.radius * Math.sin(phi * i);
 				this.vertices.push(x, y, z);
 				this.normals.push(x, y, z);
+				this.texCoords.push(((Math.cos(phi*i)*Math.cos(theta*j))+1)/2, 1 - ((Math.cos(phi*i)*Math.sin(theta*j))+1)/2);
 			}
 		}
 
-		for (var i = 0; i < this.stacks; i++)
-		{
-			for (var j = 0; j < this.slices - 1; j++)
+		if(this.reverse){
+			for (var i = 0; i < this.stacks; i++)
 			{
-				this.indices.push(i * this.slices + j, i * this.slices + j + 1, (i + 1) * this.slices + j);
-				this.indices.push(i * this.slices + j + 1, (i + 1) * this.slices + j + 1, (i + 1) * this.slices + j);
+				for (var j = 0; j < this.slices - 1; j++)
+				{
+					this.indices.push(i * this.slices + j + 1, i * this.slices + j, (i + 1) * this.slices + j);
+					this.indices.push((i + 1) * this.slices + j + 1, i * this.slices + j + 1,  (i + 1) * this.slices + j);
+				}
+	
+				this.indices.push(i * this.slices, i * this.slices + this.slices - 1,  (i + 1) * this.slices + this.slices - 1);
+				this.indices.push(i * this.slices + this.slices, i * this.slices,  (i + 1) * this.slices + this.slices - 1);
 			}
 
-			this.indices.push(i * this.slices + this.slices - 1, i * this.slices, (i + 1) * this.slices + this.slices - 1);
-			this.indices.push(i * this.slices, i * this.slices + this.slices, (i + 1) * this.slices + this.slices - 1);
-		}
-
-		for (var i = 0; i <= this.stacks; i++)
-		{
-			for (var j = 0; j <= this.slices; j++)
+		}else{
+			for (var i = 0; i < this.stacks; i++)
 			{
-				this.texCoords.push(j/this.slices, i/this.stacks);
+				for (var j = 0; j < this.slices - 1; j++)
+				{
+					this.indices.push(i * this.slices + j, i * this.slices + j + 1, (i + 1) * this.slices + j);
+					this.indices.push(i * this.slices + j + 1, (i + 1) * this.slices + j + 1, (i + 1) * this.slices + j);
+				}
+	
+				this.indices.push(i * this.slices + this.slices - 1, i * this.slices, (i + 1) * this.slices + this.slices - 1);
+				this.indices.push(i * this.slices, i * this.slices + this.slices, (i + 1) * this.slices + this.slices - 1);
 			}
 		}
-
+		
 		this.primitiveType = this.scene.gl.TRIANGLES;
 
 		this.initGLBuffers();

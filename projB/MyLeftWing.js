@@ -3,14 +3,17 @@
 * @constructor
 */
 class MyLeftWing extends CGFobject {
-    constructor (scene) {
+    constructor (scene, topTexture, botTexture) {
         super(scene);
 
         this.time = 0;
 
-        this.wingBase = new MyUnitCubeQuad(this.scene);  
-        this.wingMiddle = new MyTriangleDepth(this.scene);
-        this.wingEnd = new MyTriangleDepth(this.scene);
+        this.topTexture = topTexture;
+        this.botTexture = botTexture;
+
+        this.wingBase = new MyUnitCubeQuad(this.scene, this.topTexture, this.topTexture, this.botTexture, this.topTexture, this.botTexture, this.topTexture); 
+        this.wingMiddle = new MyTriangleDepth(this.scene, this.topTexture, this.botTexture, this.topTexture, this.topTexture, this.topTexture);
+        this.wingEnd = new MyTriangleDepth(this.scene, this.botTexture, this.botTexture, this.botTexture, this.botTexture, this.botTexture);
     }
 
     display() {

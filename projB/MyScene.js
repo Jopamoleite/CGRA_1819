@@ -51,6 +51,7 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
+        this.tree = new MyLSPlant(this);
 
         //Random branch rotation initialization
         this.branchRotationsNumbers = [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6), Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)];
@@ -182,6 +183,11 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(-4, 4.25, -4);
         this.house.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0, 4.25, 0);
+        this.tree.display();
         this.popMatrix();
 
         this.cubemap.display();

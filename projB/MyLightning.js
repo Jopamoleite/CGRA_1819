@@ -17,7 +17,7 @@ class MyLightning extends MyLSystem{
 
 		this.x =Math.floor(Math.random() * 20) -10;
 		this.z =Math.floor(Math.random() * 20) -10;
-		this.rotation =Math.floor(Math.random() * 5) * Math.PI/4;
+		this.rotation =Math.floor(Math.random() * 8) * Math.PI/2;
 
         this.doGenerate = function(){
         	this.generate(
@@ -57,7 +57,7 @@ class MyLightning extends MyLSystem{
 
     update(t){
     	this.deltaT = t - this.time;
-		this.depth = (this.deltaT/1)*this.axiom.length;
+		this.depth = this.deltaT*this.axiom.length;
 		//this.depth = this.axiom.length;
 		if(this.depth > this.axiom.length){
 			this.depth = 0;
@@ -69,8 +69,8 @@ class MyLightning extends MyLSystem{
     	this.scene.pushMatrix();
         this.scene.translate(this.x, 50, this.z);
         this.scene.scale(10,13,1);
+         this.scene.rotate(this.rotation, 0.0, 1.0, 0.0);
         this.scene.rotate(Math.PI, 0.0, 0.0, 1.0);
-        this.scene.rotate(this.rotation, 0.0, 1.0, 0.0);
     	this.lightningMaterial.apply();
 		this.scene.pushMatrix();
         this.scene.scale(this.scale, this.scale, this.scale);

@@ -61,8 +61,8 @@ class MyBird extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        //if(!this.pickingUp)
-         //   this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+        if(!this.pickingUp)
+            this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
         if(this.pickingUp){
             this.scene.translate(0, -Math.sin((this.pickingUpTime/4)*Math.PI)*3, 0);
         }

@@ -109,6 +109,8 @@ class MyScene extends CGFscene {
                 this.lightning = new MyLightning(this);
                 this.lightning.startAnimation(this.startAnimationTime);
             }
+        if (this.gui.isKeyPressed("KeyP")) {
+            this.bird.pickUp(true);
         }
     }
         
@@ -132,6 +134,7 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
        
+        
         this.terrain.display();
 
         this.pushMatrix();
@@ -169,7 +172,7 @@ class MyScene extends CGFscene {
         this.popMatrix();
         
         this.pushMatrix();
-        this.translate(10, 7.25, -8);
+        this.translate(10, 8, -8);
         this.bird.display();
         this.popMatrix();
         
@@ -179,7 +182,7 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.cubemap.display();
-        this.terrain.display();
+        
         this.lightning.display();
         // ---- END Primitive drawing section
     }

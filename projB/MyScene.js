@@ -36,6 +36,7 @@ class MyScene extends CGFscene {
         this.newTime = 0;
         this.oldTime = 0;
         this.deltaT = 0;
+        this.startAnimationTime = 0;
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -81,6 +82,7 @@ class MyScene extends CGFscene {
         this.deltaT = this.newTime - this.oldTime;
         this.checkKeys();
         this.bird.update(this.deltaT*2);
+        this.lightning.update(this.newTime);
         this.oldTime = this.newTime;
     }
     checkKeys() {
@@ -100,6 +102,13 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyR")) {
             this.bird.resetPosition();
+        }
+        if (this.gui.isKeyPressed("KeyL")) {
+            if(this.newTime - this.startAnimationTime >= 1){
+                this.startAnimationTime = this.newTime;
+                this.lightning = new MyLightning(this);
+                this.lightning.startAnimation(this.startAnimationTime);
+            }
         }
         if (this.gui.isKeyPressed("KeyP")) {
             this.bird.pickUp(true);
@@ -125,8 +134,11 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+       
         
         this.terrain.display();
+
+        this.lightning.display();
 
         this.pushMatrix();
         this.translate(10, 4.25, -7);
@@ -173,8 +185,6 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.cubemap.display();
-        
-        this.lightning.display();
         // ---- END Primitive drawing section
     }
 }

@@ -125,7 +125,7 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        
+        /*
 
         this.lightning.display();
         this.terrain.display();
@@ -165,16 +165,16 @@ class MyScene extends CGFscene {
         this.popMatrix();
         
         this.pushMatrix();
-        this.translate(10, 8, -8);
+        this.translate(10, 8, -8);*/
         this.bird.display();
-        this.popMatrix();
+       /* this.popMatrix();
         
         this.pushMatrix();
         this.translate(-4, 4.25, -4);
         this.house.display();
         this.popMatrix();
 
-        this.cubemap.display();
+        this.cubemap.display();*/
         // ---- END Primitive drawing section
     }
 }

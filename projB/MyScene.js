@@ -109,6 +109,7 @@ class MyScene extends CGFscene {
                 this.lightning = new MyLightning(this);
                 this.lightning.startAnimation(this.startAnimationTime);
             }
+        }
         if (this.gui.isKeyPressed("KeyP")) {
             this.bird.pickUp(true);
         }

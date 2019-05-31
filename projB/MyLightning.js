@@ -69,13 +69,16 @@ class MyLightning extends MyLSystem{
     	this.scene.pushMatrix();
         this.scene.translate(this.x, 50, this.z);
         this.scene.scale(10,13,1);
-         this.scene.rotate(this.rotation, 0.0, 1.0, 0.0);
+        this.scene.rotate(this.rotation, 0.0, 1.0, 0.0);
         this.scene.rotate(Math.PI, 0.0, 0.0, 1.0);
     	this.lightningMaterial.apply();
 		this.scene.pushMatrix();
         this.scene.scale(this.scale, this.scale, this.scale);
         var i;
 
+		this.pushCount = 0;
+    	this.popCount = 0;
+    	
         // percorre a cadeia de caracteres
         for (i=0; i<this.depth; ++i){
 
@@ -94,11 +97,13 @@ class MyLightning extends MyLSystem{
                 case "[":
                     // push
                     this.scene.pushMatrix();
+                    this.pushCount+=1;
                     break;
 
                 case "]":
                     // pop
                     this.scene.popMatrix();
+                    this.popCount+=1;
                     break;
                 case "\\":
                     this.scene.rotate(this.angle,1,0,0);
@@ -132,5 +137,9 @@ class MyLightning extends MyLSystem{
         }
         this.scene.popMatrix();
     	this.scene.popMatrix();
+    	var j;
+    	for(j = 0; j < this.pushCount-this.popCount; ++j){
+    		this.scene.popMatrix();
+    	}
     }
 }

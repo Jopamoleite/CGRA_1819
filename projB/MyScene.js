@@ -138,6 +138,8 @@ class MyScene extends CGFscene {
         
         this.terrain.display();
 
+        this.lightning.display();
+
         this.pushMatrix();
         this.translate(10, 4.25, -7);
         this.scale(0.35, 0.35, 0.35);
@@ -183,8 +185,6 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.cubemap.display();
-        
-        this.lightning.display();
         // ---- END Primitive drawing section
     }
 }

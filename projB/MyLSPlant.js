@@ -17,7 +17,7 @@ class MyLSPlant extends MyLSystem {
                 this.axiom,
                 {
                     "F": [ "FF" ],
-                    "X": [ "F[-X][X]F[-X]+X", "F[-X][X]+X", "F[+X]-X", "F[/X][X]F[\\X]+X", "F[\X][X]/X", "F[/X]\X", "F[^X][X]F[&X]^X", "F[^X]&X", "F[&X]^X" ]
+                    "X": [ "F[+&X][/X]F[-^X]+[\X]", "&F[^X]^[^-X]^[^\X]+/X", "F[+&&X][-^^X]F[/&&X][\&&X]", "F[/X][-X]F[\\X]+X", "FF[\-X][X]^[X]&/X", "F[^+X][-X]&X", "FF[&\\X][/^X][&/X]\^X"]
                 },
                 this.angle,
                 this.iterations,

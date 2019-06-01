@@ -3,8 +3,10 @@
 * @constructor
 */
 class MyTreeBranch extends CGFobject {
-    constructor(scene) {
+    constructor(scene, x, y, z) {
         super(scene);
+
+        this.position = [x, y, z];
 
         this.cylinder = new MyCylinder(this.scene, 6);
         this.cylinderTop = new MyCylinderCover(this.scene, 6);
@@ -13,7 +15,6 @@ class MyTreeBranch extends CGFobject {
     }
 
     initMaterials(){
-        
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk2.png');
 
         this.woodMaterial = new CGFappearance(this.scene);

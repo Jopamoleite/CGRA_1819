@@ -42,10 +42,8 @@ class MyNest extends CGFobject {
             }
         }
         
-
         this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
-        //this.scene.translate(0, -1, -1);
 
         this.woodMaterial.apply();
         this.outside.display();

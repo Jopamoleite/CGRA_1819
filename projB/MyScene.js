@@ -47,8 +47,6 @@ class MyScene extends CGFscene {
         this.tree3 = new MyLSPlant(this);
         this.tree4 = new MyLSPlant(this);
         this.tree5 = new MyLSPlant(this);
-        this.tree6 = new MyLSPlant(this);
-
 
         this.bird = new MyBird(this);
         this.bird.startingPos = [10, 7.75, -8];
@@ -233,12 +231,7 @@ class MyScene extends CGFscene {
         this.translate(14, 4.25, -6);
         this.tree5.display();
         this.popMatrix();
-        
-        this.pushMatrix();
-        this.translate(12, 4.25, 2);
-        this.tree6.display();
-        this.popMatrix();
-        
+
         this.pushMatrix();
         this.translate(-4, 4.25, -4);
         this.house.display();

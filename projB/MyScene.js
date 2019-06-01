@@ -50,6 +50,13 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
+        this.tree1 = new MyLSPlant(this);
+        this.tree2 = new MyLSPlant(this);
+        this.tree3 = new MyLSPlant(this);
+        this.tree4 = new MyLSPlant(this);
+        this.tree5 = new MyLSPlant(this);
+        this.tree6 = new MyLSPlant(this);
+
 
         this.bird = new MyBird(this);
         this.bird.startingPos = [10, 7.75, -8];
@@ -209,6 +216,37 @@ class MyScene extends CGFscene {
         }
         
         this.bird.display();
+        this.popMatrix();
+       
+        this.pushMatrix();
+        this.translate(0, 4.25, 0);
+        this.tree1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(10, 4.25, 10);
+        this.tree2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-10, 4.25, -6);
+        this.tree3.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(0, 4.25, -15);
+        this.tree4.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(14, 4.25, -6);
+        this.tree5.display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.translate(12, 4.25, 2);
+        this.tree6.display();
+        this.popMatrix();
         
         this.pushMatrix();
         this.translate(-4, 4.25, -4);

@@ -65,7 +65,7 @@ class MyBird extends CGFobject {
     display() {
         this.scene.pushMatrix();
         if(!this.pickingUp)
-            this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
+            this.scene.translate(0, Math.sin(this.time*Math.PI*this.scene.speedFactor), 0);
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.rotation, 0, 1, 0);
         
@@ -204,7 +204,7 @@ class MyBird extends CGFobject {
     }
 
     turn(v){
-        this.rotation += v*Math.PI/16;
+        this.rotation += v*Math.PI/(16/this.scene.speedFactor);
     }
 
     accelerate(v){

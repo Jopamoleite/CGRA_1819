@@ -44,7 +44,7 @@ class MyScene extends CGFscene {
         this.branch2 = new MyTreeBranch(this, 5, 4.25, 0);
         this.branch3 = new MyTreeBranch(this, -2, 4.25, -10);
         this.branch4 = new MyTreeBranch(this, 15, 4.25, 6);
-        this.nest = new MyNest(this, 10, 4.25, -7);
+        this.nest = new MyNest(this, 10, 5.25, -8);
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this, 2.0, 2.5, 3.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
@@ -93,17 +93,22 @@ class MyScene extends CGFscene {
                 continue;
             }
             if(this.bird.branch == undefined){
-                if(Math.pow(this.branches[i].position[0] - this.bird.position[0], 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2], 2) <= 1.5){
+                var beakRadius = 1.5;
+                if(this.scaleFactor>=1){
+                    beakRadius*=this.scaleFactor;
+                }
+                if(Math.pow(this.branches[i].position[0] - this.bird.position[0], 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2], 2) <= beakRadius){
                     this.bird.branch = this.branches[i];
                     this.branches[i] = undefined;
                 }  
             }
         }
         if(this.bird.branch != undefined){
-            if(Math.pow(this.bird.position[0] - this.nest.position[0], 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - this.nest.position[2], 2) <= 2){
-                console.log(this.bird.position);
-                console.log(this.nest.position);
-                console.log(this.nest.branches.length);
+            var nestRadius = 1.5;
+            if(this.scaleFactor >= 1){
+                nestRadius *= this.scaleFactor;
+            }
+            if(Math.pow(this.bird.position[0] - this.nest.position[0], 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - this.nest.position[2], 2) <= nestRadius){
                 this.nest.branches.push(this.bird.branch);
                 this.bird.branch = undefined;    
             }

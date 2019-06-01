@@ -31,7 +31,7 @@ class MyNest extends CGFobject {
         for(var i = 0; i < this.branches.length; i++){
             if(this.branches[i] != undefined){
                 this.scene.pushMatrix();
-                this.scene.translate(0.7*(i-1), 0, -4);
+                this.scene.translate(0.7*(i-1), 0, -1);
                 this.branches[i].display();
                 this.scene.popMatrix();
                 
@@ -41,7 +41,7 @@ class MyNest extends CGFobject {
 
         this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
-        this.scene.translate(0, -1, -1);
+        //this.scene.translate(0, -1, -1);
 
         this.woodMaterial.apply();
         this.outside.display();

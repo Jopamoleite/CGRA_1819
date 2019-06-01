@@ -9,7 +9,7 @@ class MyLSPlant extends MyLSystem {
 
         this.axiom = "X";
         this.angle = 40.0;
-        this.iterations = 5;
+        this.iterations = 4;
         this.scaleFactor = 0.6;
 
         this.doGenerate = function () {

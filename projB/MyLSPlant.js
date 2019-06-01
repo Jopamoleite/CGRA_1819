@@ -11,10 +11,8 @@ class MyLSPlant extends MyLSystem {
         this.angle = 40.0;
         this.iterations = 5;
         this.scaleFactor = 0.6;
-        //this.lSystem = new MyLSystem(this);
 
         this.doGenerate = function () {
-            //this.lSystem.generate(
             this.generate(
                 this.axiom,
                 {

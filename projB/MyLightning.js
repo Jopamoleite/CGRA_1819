@@ -17,7 +17,7 @@ class MyLightning extends MyLSystem{
 
 		this.x =Math.floor(Math.random() * 20) -10;
 		this.z =Math.floor(Math.random() * 20) -10;
-		this.rotation =Math.floor(Math.random() * 8) * Math.PI/2;
+		this.rotation =Math.floor(Math.random() * 8) * Math.PI/4;
 
         this.doGenerate = function(){
         	this.generate(
@@ -44,8 +44,8 @@ class MyLightning extends MyLSystem{
 
     initGrammar(){
     	this.grammar = {
-    		"F": new MyQuad(this.scene),
-    		"X": new MyQuad(this.scene)
+    		"F": new MyQuadBothFaces(this.scene),
+    		"X": new MyQuadBothFaces(this.scene)
     	};
     }
 

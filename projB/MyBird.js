@@ -12,6 +12,7 @@ class MyBird extends CGFobject {
         this.deltaT = 0;
         this.rotation = 0;
         this.speed = 0;
+        this.startingPos = [0, 0, 0];
         this.position = [0, 0, 0];
         this.pickingUpTime = 0;
         this.pickingUp = false;
@@ -26,6 +27,8 @@ class MyBird extends CGFobject {
         this.leftWing = new MyLeftWing(this.scene, this.faceBackMaterial, this.faceFrontMaterial);
         this.rightEye = new MySphere(this.scene, 1, 8, 5);
         this.leftEye = new MySphere(this.scene, 1, 8, 5);
+
+        this.branch = undefined;
     }
 
     initMaterials(){
@@ -63,9 +66,6 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         if(!this.pickingUp)
             this.scene.translate(0, Math.sin(this.time*Math.PI), 0);
-        if(this.pickingUp){
-            this.scene.translate(0, -Math.sin((this.pickingUpTime/4)*Math.PI)*3, 0);
-        }
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.rotation, 0, 1, 0);
         
@@ -144,17 +144,33 @@ class MyBird extends CGFobject {
         this.leftEye.display();
         this.scene.popMatrix();
 
+        if(this.branch != undefined){
+            this.scene.pushMatrix();
+            this.scene.translate(-1, 0.5, 3.3);
+            this.scene.rotate(Math.PI/2, 0, 1, 0);
+            this.branch.display();
+            this.scene.popMatrix();
+        }
+
         this.scene.popMatrix();
         this.scene.popMatrix();
     }
 
     update(t){
         this.deltaT = t;
-        if(!this.pickingUp)
+        if(!this.pickingUp){
             this.time += this.deltaT;
+        }else{
+            if(this.pickingUpTime >= 2){
+                this.position[1] += 0.15;                
+            }else{
+                this.position[1] -= 0.15;                
+            }
+        }
         this.position[0] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.sin(this.rotation);
         this.position[2] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.cos(this.rotation); 
         if(this.pickingUpTime >= 4){
+            this.position[1] = this.startingPos[1];
             this.pickingUp = false;    
             this.pickingUpTime = 0;        
         }
@@ -171,8 +187,8 @@ class MyBird extends CGFobject {
 
         if(!this.pickingUp){
             if(this.speed <= 1){
-                this.leftWing.update(this.time*this.scene.speedFactor/2);
-                this.rightWing.update(-this.time*this.scene.speedFactor/2);
+                this.leftWing.update(-this.time*this.scene.speedFactor/2);
+                this.rightWing.update(this.time*this.scene.speedFactor/2);
             }else{
                 this.leftWing.update(this.time*(this.speed/4 + 1)*this.scene.speedFactor/2);
                 this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor/2);
@@ -200,7 +216,9 @@ class MyBird extends CGFobject {
         this.rotationNumber = 0;
         this.deltaT = 0;
         this.rotation = 0;
-        this.position = [0, 0, 0];
+        this.position[0] = this.startingPos[0];
+        this.position[1] = this.startingPos[1];
+        this.position[2] = this.startingPos[2];
     }
 
 }

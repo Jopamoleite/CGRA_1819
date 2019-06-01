@@ -3,8 +3,12 @@
 * @constructor
 */
 class MyNest extends CGFobject {
-    constructor(scene) {
+    constructor(scene, x, y, z) {
         super(scene);
+
+        this.position = [x, y, z];
+
+        this.branches = [undefined, undefined, undefined];
 
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
@@ -22,6 +26,8 @@ class MyNest extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
+        this.scene.translate(this.position[0], this.position[1], this.position[2]);
+        this.scene.scale(0.35, 0.35, 0.35);
 
         this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
@@ -30,6 +36,14 @@ class MyNest extends CGFobject {
         this.woodMaterial.apply();
         this.outside.display();
         this.inside.display();
+
+        for(var i = 0; this.branches.length; i++){
+            this.scene.pushMatrix();
+            this.scene.translate(0.5*i, 0, 0);
+            if(this.branches[i] != undefined);
+            this.branches[i].display();
+            this.scene.popMatrix();
+        }
         
         this.scene.popMatrix();
     }

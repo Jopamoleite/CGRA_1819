@@ -93,17 +93,19 @@ class MyScene extends CGFscene {
                 continue;
             }
             if(this.bird.branch == undefined){
-                console.log(this.bird.position);
-                console.log(this.branches[i].position);
                 if(Math.pow(this.branches[i].position[0] - this.bird.position[0], 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2], 2) <= 1.5){
                     this.bird.branch = this.branches[i];
                     this.branches[i] = undefined;
                 }  
-            }else{
-                if(Math.pow(this.bird.position[0] - this.nest.position[0], 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - this.nest.position[2], 2) <= 2){
-                    this.nest.branches.push(this.bird.branch);
-                    this.bird.branch = undefined;
-                }
+            }
+        }
+        if(this.bird.branch != undefined){
+            if(Math.pow(this.bird.position[0] - this.nest.position[0], 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - this.nest.position[2], 2) <= 2){
+                console.log(this.bird.position);
+                console.log(this.nest.position);
+                console.log(this.nest.branches.length);
+                this.nest.branches.push(this.bird.branch);
+                this.bird.branch = undefined;    
             }
         }
 

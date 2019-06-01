@@ -8,7 +8,7 @@ class MyNest extends CGFobject {
 
         this.position = [x, y, z];
 
-        this.branches = [undefined, undefined, undefined];
+        this.branches = [];
 
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
@@ -28,6 +28,16 @@ class MyNest extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.scale(0.35, 0.35, 0.35);
+        for(var i = 0; i < this.branches.length; i++){
+            if(this.branches[i] != undefined){
+                this.scene.pushMatrix();
+                this.scene.translate(0.7*(i-1), 0, -4);
+                this.branches[i].display();
+                this.scene.popMatrix();
+                
+            }
+        }
+        
 
         this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
@@ -37,14 +47,6 @@ class MyNest extends CGFobject {
         this.outside.display();
         this.inside.display();
 
-        for(var i = 0; this.branches.length; i++){
-            this.scene.pushMatrix();
-            this.scene.translate(0.5*i, 0, 0);
-            if(this.branches[i] != undefined);
-            this.branches[i].display();
-            this.scene.popMatrix();
-        }
-        
         this.scene.popMatrix();
     }
     

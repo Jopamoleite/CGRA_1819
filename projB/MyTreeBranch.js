@@ -18,6 +18,10 @@ class MyTreeBranch extends CGFobject {
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk2.png');
 
         this.woodMaterial = new CGFappearance(this.scene);
+        this.woodMaterial.setAmbient(0.4, 0.2, 0.1, 1.0);
+        this.woodMaterial.setDiffuse(0.4, 0.2, 0.1, 1.0);
+        this.woodMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.woodMaterial.setShininess(10.0);
         this.woodMaterial.setTexture(this.woodTexture);
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }

@@ -40,22 +40,42 @@ class MyBird extends CGFobject {
         this.faceBackTexture = new CGFtexture(this.scene, 'images/faceBack.png');
 
         this.featherMaterial = new CGFappearance(this.scene);
+        this.featherMaterial.setAmbient(0.4, 0.4, 0.3, 1.0);
+        this.featherMaterial.setDiffuse(0.4, 0.4, 0.3, 1.0);
+        this.featherMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.featherMaterial.setShininess(10.0);
         this.featherMaterial.setTexture(this.featherTexture);
         this.featherMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.eyeMaterial = new CGFappearance(this.scene);
+        this.eyeMaterial.setAmbient(0.7, 0.7, 0.7, 1.0);
+        this.eyeMaterial.setDiffuse(0.7, 0.7, 0.7, 1.0);
+        this.eyeMaterial.setSpecular(0.7, 0.7, 0.7, 1.0);
+        this.eyeMaterial.setShininess(10.0);
         this.eyeMaterial.setTexture(this.eyeTexture);
         this.eyeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.beakMaterial = new CGFappearance(this.scene);
+        this.beakMaterial.setAmbient(0.6, 0.4, 0.4, 1.0);
+        this.beakMaterial.setDiffuse(0.6, 0.4, 0.4, 1.0);
+        this.beakMaterial.setSpecular(0.4, 0.4, 0.4, 1.0);
+        this.beakMaterial.setShininess(10.0);
         this.beakMaterial.setTexture(this.beakTexture);
         this.beakMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
         this.faceFrontMaterial = new CGFappearance(this.scene);
+        this.faceFrontMaterial.setAmbient(0.4, 0.4, 0.3, 1.0);
+        this.faceFrontMaterial.setDiffuse(0.4, 0.4, 0.3, 1.0);
+        this.faceFrontMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.faceFrontMaterial.setShininess(10.0);
         this.faceFrontMaterial.setTexture(this.faceFrontTexture);
         this.faceFrontMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.faceBackMaterial = new CGFappearance(this.scene);
+        this.faceBackMaterial.setAmbient(0.4, 0.4, 0.3, 1.0);
+        this.faceBackMaterial.setDiffuse(0.4, 0.4, 0.3, 1.0);
+        this.faceBackMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.faceBackMaterial.setShininess(10.0);
         this.faceBackMaterial.setTexture(this.faceBackTexture);
         this.faceBackMaterial.setTextureWrap('REPEAT', 'REPEAT');
 

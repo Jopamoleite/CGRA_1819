@@ -22,15 +22,7 @@ class MyScene extends CGFscene {
         this.setUpdatePeriod(50);
 
         this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
-        
-        /*this.groundTexture = new CGFtexture(this, 'images/terrain.jpg');
-        this.groundMaterial = new CGFappearance(this);
-        this.groundMaterial.setAmbient(0.7, 1, 0.5, 1);
-        this.groundMaterial.setDiffuse(0.7, 1, 0.5, 1);
-        this.groundMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
-        this.groundMaterial.setShininess(10.0);
-        this.groundMaterial.setTexture(this.groundTexture);
-        this.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');*/
+
 
         //Initialize times
         this.newTime = 0;

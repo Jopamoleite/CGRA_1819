@@ -20,6 +20,10 @@ class MyNest extends CGFobject {
         this.woodTexture = new CGFtexture(this.scene, 'images/nest.png');
 
         this.woodMaterial = new CGFappearance(this.scene);
+        this.woodMaterial.setAmbient(0.6, 0.4, 0.4, 1.0);
+        this.woodMaterial.setDiffuse(0.6, 0.4, 0.4, 1.0);
+        this.woodMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.woodMaterial.setShininess(10.0);
         this.woodMaterial.setTexture(this.woodTexture);
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }

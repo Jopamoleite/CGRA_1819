@@ -47,6 +47,9 @@ class MyScene extends CGFscene {
         this.tree3 = new MyLSPlant(this);
         this.tree4 = new MyLSPlant(this);
         this.tree5 = new MyLSPlant(this);
+        this.tree6 = new MyLSPlant(this);
+        this.boat = new MyBoat(this);
+        this.person = new MyPerson(this);
 
         this.bird = new MyBird(this);
         this.bird.startingPos = [10, 7.75, -8];
@@ -69,7 +72,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(45, 45, 45), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.7, 0.1, 500, vec3.fromValues(27, 35, 27), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -162,6 +165,9 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
        
+        this.person.display();
+
+        this.boat.display();
         
         this.terrain.display();
 
@@ -242,7 +248,10 @@ class MyScene extends CGFscene {
         this.house.display();
         this.popMatrix();
 
+        this.pushMatrix();
+        this.translate(0, -30, 0 );
         this.cubemap.display();
+        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }

@@ -97,18 +97,20 @@ class MyScene extends CGFscene {
                 if(this.scaleFactor>=1){
                     beakRadius*=this.scaleFactor;
                 }
-                if(Math.pow(this.branches[i].position[0] - this.bird.position[0], 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2], 2) <= beakRadius){
+                console.log([this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)),this.bird.position[1],this.bird.position[2]+(2.97*Math.cos(this.bird.rotation))]);
+                console.log(this.branches[i].position);
+                if(Math.pow(this.branches[i].position[0] - this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)), 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2]+(2.97*Math.cos(this.bird.rotation)), 2) <= beakRadius){
                     this.bird.branch = this.branches[i];
                     this.branches[i] = undefined;
                 }  
             }
         }
         if(this.bird.branch != undefined){
-            var nestRadius = 1.5;
+            var nestRadius = 2;
             if(this.scaleFactor >= 1){
                 nestRadius *= this.scaleFactor;
             }
-            if(Math.pow(this.bird.position[0] - this.nest.position[0], 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - this.nest.position[2], 2) <= nestRadius){
+            if(Math.pow(this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)) - this.nest.position[0]+0.5, 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2]+(2.97*Math.cos(this.bird.rotation)) - this.nest.position[2]+0.5, 2) <= nestRadius){
                 this.nest.branches.push(this.bird.branch);
                 this.bird.branch = undefined;    
             }

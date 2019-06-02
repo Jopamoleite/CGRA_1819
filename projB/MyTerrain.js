@@ -20,7 +20,7 @@ class MyTerrain extends CGFobject {
         this.appearance.setTexture(this.terrainTexture);
         this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
-       
+        //Initialization of shaders
         this.terrainShader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
        
         this.terrainShader.setUniformsValues({ uSampler2: 1, normScale: 0.2, gradient: 2});
@@ -42,14 +42,16 @@ class MyTerrain extends CGFobject {
     display() {
 
         this.scene.pushMatrix();
-        
         this.scene.scale(60,60,60);
         this.scene.rotate(Math.PI/2, -1.0, 0, 0)
         this.appearance.apply();
+        //Binds textures
         this.terrainMap.bind(1);
         this.terrainGradient.bind(2);
+        //Sets terrain shader as active shader
         this.scene.setActiveShader(this.terrainShader);
         this.plane.display();
+        //Sets default shader as active shader
         this.scene.setActiveShader(this.scene.defaultShader);
 
         this.scene.popMatrix();

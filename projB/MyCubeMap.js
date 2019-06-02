@@ -7,20 +7,25 @@ class MyCubeMap extends CGFobject {
 	constructor(scene, scale, skyTexture) {
                 super(scene);
                 
-        this.quad = new MyQuad(this.scene,undefined,true);
-        this.scale = scale;                
-        this.skyTexture = skyTexture;
-        this.skyMaterial = new CGFappearance(this.scene);
-        this.skyMaterial.setAmbient(1, 1, 1, 1);
-        this.skyMaterial.setDiffuse(1, 1, 1, 1);
-        this.skyMaterial.setSpecular(1, 1, 1, 1);
-        this.skyMaterial.setShininess(10.0);
-        this.skyMaterial.setTexture(this.skyTexture);
-        this.skyMaterial.setTextureWrap('REPEAT', 'REPEAT');
-        this.txCoords = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0];
-        this.quad.updateTexCoords(this.txCoords);
+                this.quad = new MyQuad(this.scene,undefined,true);
+                this.scale = scale;                
+                this.skyTexture = skyTexture;
+
+                //Initialization of the material
+                this.skyMaterial = new CGFappearance(this.scene);
+                this.skyMaterial.setAmbient(1, 1, 1, 1);
+                this.skyMaterial.setDiffuse(1, 1, 1, 1);
+                this.skyMaterial.setSpecular(1, 1, 1, 1);
+                this.skyMaterial.setShininess(10.0);
+                this.skyMaterial.setTexture(this.skyTexture);
+                this.skyMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+                
+                this.txCoords = [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0];
+                this.quad.updateTexCoords(this.txCoords);
 	}
 
+        //Displays cubemap
 	display(){
                 this.scene.pushMatrix();
                 this.scene.scale(this.scale,this.scale,this.scale);
@@ -64,6 +69,7 @@ class MyCubeMap extends CGFobject {
                 this.scene.popMatrix();
         }
         
+        //Allows for texture change
         updateTexture(skyTexture){
                 this.skyTexture = skyTexture
                 this.skyMaterial.setTexture(this.skyTexture);

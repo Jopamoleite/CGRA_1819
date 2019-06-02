@@ -6,10 +6,13 @@
 class MyBranch extends CGFobject{
 	constructor(scene) {
         super(scene);
+
+        //Initialization of the different parts
         this.cylinder = new MyCylinder(this.scene, 3);
         this.cylinderTop = new MyCylinderCover(this.scene, 3);
         this.cylinderBot = new MyCylinderCover(this.scene, 3);
 
+        //Initialization of the materials
         this.trunkTexture = new CGFtexture(this.scene, 'images/wood_tree.jpg');
         
         this.branchMaterial = new CGFappearance(this.scene);
@@ -21,6 +24,7 @@ class MyBranch extends CGFobject{
         this.branchMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the branch
     display(){
         this.scene.pushMatrix();
 

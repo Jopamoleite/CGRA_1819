@@ -8,13 +8,17 @@ class MyBoat extends CGFobject {
 
         this.position = [-10, 1.5, 6];
 
+        //initialization of the different parts
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
         this.oar = new MyOar(this.scene);
         this.oar2 = new MyOar(this.scene);
+
+
         this.initMaterials();
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk.png');
@@ -28,6 +32,7 @@ class MyBoat extends CGFobject {
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the boat
     display(){
         this.scene.pushMatrix();
         this.scene.translate(this.position[0], this.position[1], this.position[2]);

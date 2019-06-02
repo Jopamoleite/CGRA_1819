@@ -7,10 +7,13 @@ class MyBrokenEgg extends CGFobject {
         super(scene);
 
         this.initMaterials();
+
+        //Initialization of the parts
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.eggTexture = new CGFtexture(this.scene, 'images/crackedEgg.png');
@@ -24,6 +27,7 @@ class MyBrokenEgg extends CGFobject {
         this.eggMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the broken egg
     display(){
         this.scene.pushMatrix();
         this.scene.scale(0.75, 1, 0.75);

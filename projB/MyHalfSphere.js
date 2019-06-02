@@ -19,6 +19,7 @@ class MyHalfSphere extends CGFobject
 		this.initBuffers();
 	};
 
+	//Definition of a half sphere, used by our nest, boat and others
 	initBuffers()
 	{
 		this.vertices = [];
@@ -29,6 +30,7 @@ class MyHalfSphere extends CGFobject
 		var theta = 2* Math.PI / this.slices;
 		var phi = (Math.PI / 2.0) / this.stacks;
 
+		//Goes through the number of horizontal and vertical divisions (stacks and slices) and calculates the triangles according to mathematical formulas
 		for (var i = 0; i <= this.stacks; i++)
 		{
 			for (var j = 0; j < this.slices; j++)

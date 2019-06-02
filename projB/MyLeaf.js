@@ -6,8 +6,11 @@
 class MyLeaf extends CGFobject {
 	constructor(scene) {
         super(scene);
+
+        //Primitive Initialization
         this.leaf = new MyTriangle(this.scene);
 
+        //Initialization of the material
         this.leafTexture = new CGFtexture(this.scene, 'images/leaf.jpg');
         
         this.leafMaterial = new CGFappearance(this.scene);
@@ -19,6 +22,7 @@ class MyLeaf extends CGFobject {
         this.leafMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the leaf
     display(){
         this.leafMaterial.apply();
         this.leaf.display();

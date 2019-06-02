@@ -23,7 +23,6 @@ class MyScene extends CGFscene {
 
         this.skyTextureDay = new CGFtexture(this, 'images/skyboxDay.png');
 
-
         //Initialize times
         this.newTime = 0;
         this.oldTime = 0;
@@ -80,8 +79,12 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+    //Method called automatically every 50ms (number defined by setUpdatePeriod), also calls lightning and bird's updates
     update(t){
+        //Convert ms to s
         this.newTime = t*0.001;
+        //DeltaT to help smoothed animations
         this.deltaT = this.newTime - this.oldTime;
         this.checkKeys();
         this.bird.update(this.deltaT*2);
@@ -143,6 +146,8 @@ class MyScene extends CGFscene {
         }
 
     }
+
+    //Checks key presses
     checkKeys() {
         //If the key W is pressed and the bird's current speed is less than or equal to 5, we call the bird's accelerate method with an increment of 1
         if (this.gui.isKeyPressed("KeyW")) {

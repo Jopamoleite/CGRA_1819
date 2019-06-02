@@ -7,9 +7,12 @@ class MyEgg extends CGFobject {
         super(scene);
 
         this.initMaterials();
+
+        //Initialization of the egg's primitive 
         this.egg = new MySphere(this.scene, 1, 10, 10, this.eggMaterial, this.eggMaterial);
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.eggTexture = new CGFtexture(this.scene, 'images/egg.png');
@@ -23,6 +26,7 @@ class MyEgg extends CGFobject {
         this.eggMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the egg
     display(){
         this.scene.pushMatrix();
         this.scene.scale(0.75, 1, 0.75);

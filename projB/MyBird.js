@@ -8,6 +8,7 @@ class MyBird extends CGFobject {
 
         this.initMaterials();
 
+        //Initilization of variables used for movement
         this.time = 0;
         this.deltaT = 0;
         this.rotation = 0;
@@ -18,6 +19,7 @@ class MyBird extends CGFobject {
         this.pickingUp = false;
 
 
+        //Initilization of the several body parts
         this.body = new MyCylinder(this.scene, 6);
         this.neck = new MyCone(this.scene, 6);
         this.tail = new MyCone(this.scene, 6);
@@ -32,8 +34,8 @@ class MyBird extends CGFobject {
         this.person = undefined;
     }
 
+    //Initilization of the materials
     initMaterials(){
-        
         this.featherTexture = new CGFtexture(this.scene, 'images/mix.png');
         this.eyeTexture = new CGFtexture(this.scene, 'images/eye.png');
         this.beakTexture = new CGFtexture(this.scene, 'images/beak.png');
@@ -82,15 +84,19 @@ class MyBird extends CGFobject {
 
     }
 
-
+    //Displays the bird according to the values from update
     display() {
         this.scene.pushMatrix();
+        //If the bird isn't trying to pick up a branch, he'll have an oscillating movement
         if(!this.pickingUp)
             this.scene.translate(0, Math.sin(this.time*Math.PI*this.scene.speedFactor), 0);
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.rotation, 0, 1, 0);
         
+        //If the bird is trying to pickup a branch he'll be under a rotation (different for going up and down)
         if(this.pickingUp){
+            //If pickingUpTime >= 2, the bird is going up, so it is rotated to make him tilt up
+            //Else, the bird is going down, so it is rotated to make him tilt down
             if(this.pickingUpTime >= 2){
                 this.scene.rotate(-Math.PI/8, 1, 0, 0);
             }else{
@@ -99,6 +105,7 @@ class MyBird extends CGFobject {
         }
 
         this.scene.pushMatrix();
+        //The bird is scaled according to a GUI slider variable called scaleFactor
         this.scene.scale(0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor, 0.35*this.scene.scaleFactor);
         
         this.scene.pushMatrix();
@@ -165,6 +172,7 @@ class MyBird extends CGFobject {
         this.leftEye.display();
         this.scene.popMatrix();
 
+        //If the bird is carrying a branch it is drawn on its beak
         if(this.branch != undefined){
             this.scene.pushMatrix();
             this.scene.translate(-1, 0.5, 3.3);
@@ -173,6 +181,7 @@ class MyBird extends CGFobject {
             this.scene.popMatrix();
         }
         
+        //If the bird is carrying the person it is drawn on its back
         if(this.person != undefined){
             this.scene.pushMatrix();
             this.scene.translate(0, 3, 0.25);
@@ -185,8 +194,13 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
     }
 
+    //Bird's update method, called every time the scene's update method is called
     update(t){
         this.deltaT = t;
+        //If the bird isn't trying to pick up a branch the time is incremented by deltaT seconds
+        //Else we update the birds Y position by -0.15 if the bird is going down, and by +0.15 if it's going up
+        //0.15 calculated by dividing the distance travelled (3 units) by 20 (number of updates in a second, assuming setUpdatePeriod is 50)
+        //Since the update time might vary slightly and not always be 50, the bird could end up going up or down more than if should so we reset it's Y position ahead
         if(!this.pickingUp){
             this.time += this.deltaT;
         }else{
@@ -196,15 +210,22 @@ class MyBird extends CGFobject {
                 this.position[1] -= 0.15;                
             }
         }
+
+        //Calculating distance using speed and time elapsed (deltaT), for both X and Z, depending on the bird's current rotation
         this.position[0] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.sin(this.rotation);
-        this.position[2] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.cos(this.rotation); 
+        this.position[2] += (this.speed*this.scene.speedFactor*this.deltaT)*Math.cos(this.rotation);
+
+        //If pickingUpTime is >= 4, that means the bird has completed its 2 second travel, and we reset his Y position as mentioned above, set pickingUp to false and reset pickingUpTime
         if(this.pickingUpTime >= 4){
             this.position[1] = this.startingPos[1];
             this.pickingUp = false;    
             this.pickingUpTime = 0;        
         }
         
+        //If pickingUpTime >= 2 the bird is going up, so we re-enable the wing's flapping movement
         if(this.pickingUpTime >= 2){
+            //If speed is less or equal to 1, we simply use the time * speedFactor
+            //Else, we had speed/4, so as to make the wings flap faster, but not too fast
             if(this.speed <= 1){
                 this.leftWing.update((this.time+this.pickingUpTime)*this.scene.speedFactor);
                 this.rightWing.update(-(this.time+this.pickingUpTime)*this.scene.speedFactor);
@@ -214,6 +235,8 @@ class MyBird extends CGFobject {
             }
         }
 
+        //If the bird is not picking up branches we have its wings do a flapping movement
+        //This is turned off when the birds is going down to pick up a branch, but turned on again when it starts to go up
         if(!this.pickingUp){
             if(this.speed <= 1){
                 this.leftWing.update(-this.time*this.scene.speedFactor/2);
@@ -223,23 +246,34 @@ class MyBird extends CGFobject {
                 this.rightWing.update(-this.time*(this.speed/4 + 1)*this.scene.speedFactor/2);
             }
         }
+        //If the bird is picking up a branch, instead of incrementing this.time, we increment this.pickingUpTime, to have a timer that continues to increment during the bird's ascencion
+        //And we can still preserve the time when the bird started going down, so we can return to the altitude we started going down at
         if(this.pickingUp){
             this.pickingUpTime+=this.deltaT;
         }
     }
 
+    //Method that sets pickingUp to true, called by the scene's update when P is pressed
     pickUp(v){
         this.pickingUp = v;
     }
 
+    //Method that adds a fixed rotational value to the current birds rotation
+    //It receives either 1 or -1, so it only increments or decrements the rotation ou minimal value
+    //Scales with speedFactor
+    //Called by the scene's update by pressing either A or D
     turn(v){
         this.rotation += v*Math.PI/(16/this.scene.speedFactor);
     }
 
+    //Method that adds either 1 or -1 to the current speed
+    //Called by scene's update by pressing either W or S
     accelerate(v){
         this.speed+=v;
     }
 
+    //Resets position, rotation and speed values
+    //Called by the scene's update by pressing R
     resetPosition(){
         this.speed = 0;
         this.deltaT = 0;

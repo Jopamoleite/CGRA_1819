@@ -19,6 +19,7 @@ class MyCylinderCover extends CGFobject {
         for(var i = 0; i < this.slices; i++){
             this.vertices.push(Math.cos(alphaAng*i), 0, Math.sin(alphaAng*i));
             this.normals.push(Math.cos(alphaAng*i), 0, Math.sin(alphaAng*i));
+            //Defines textCoords according to spherical coordinates centered on the texture's middle point
             this.texCoords.push(0.5+0.5*Math.cos(alphaAng*i), 0.5+0.5*Math.sin(alphaAng*i));
             if(i != this.slices-1)
                 this.indices.push(this.slices, i, i+1);

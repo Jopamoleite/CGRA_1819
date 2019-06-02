@@ -18,6 +18,7 @@ class MyHouse extends CGFobject {
         
         this.roofCoords = [];
 
+        //Sets roofCoords to send to MyPyramid to change its texCoords to display the same texture on each face
         for(var i = 0; i < this.roofSides; i++){
             this.roofCoords.push(0.5, 0);
             this.roofCoords.push(0, 1);
@@ -26,6 +27,7 @@ class MyHouse extends CGFobject {
         this.roof.updateTexCoords(this.roofCoords);        
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.roofTexture = new CGFtexture(this.scene, 'images/bricks.png');
@@ -76,7 +78,7 @@ class MyHouse extends CGFobject {
 
     }
 
-
+    //Displays the house
     display() {
         
         this.columnMaterial.apply();

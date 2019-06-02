@@ -29,6 +29,7 @@ class MyBird extends CGFobject {
         this.leftEye = new MySphere(this.scene, 1, 8, 5);
 
         this.branch = undefined;
+        this.person = undefined;
     }
 
     initMaterials(){
@@ -171,6 +172,14 @@ class MyBird extends CGFobject {
             this.branch.display();
             this.scene.popMatrix();
         }
+        
+        if(this.person != undefined){
+            this.scene.pushMatrix();
+            this.scene.translate(0, 3, 0.25);
+            this.scene.rotate(Math.PI/2, 1, 0, 0);
+            this.person.display();
+            this.scene.popMatrix();
+        }
 
         this.scene.popMatrix();
         this.scene.popMatrix();
@@ -233,7 +242,6 @@ class MyBird extends CGFobject {
 
     resetPosition(){
         this.speed = 0;
-        this.rotationNumber = 0;
         this.deltaT = 0;
         this.rotation = 0;
         this.position[0] = this.startingPos[0];

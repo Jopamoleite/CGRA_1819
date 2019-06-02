@@ -88,31 +88,42 @@ class MyScene extends CGFscene {
         this.lightning.update(this.newTime);
         this.oldTime = this.newTime;
 
-        for(var i = 0; i < this.branches.length; i++){
-            if(this.branches[i] == undefined){
-                continue;
+        if(this.bird.pickingUp){
+            for(var i = 0; i < this.branches.length; i++){
+                if(this.branches[i] == undefined){
+                    continue;
+                }
+                if(this.bird.branch == undefined){
+                    var beakRadius = 2;
+                    if(this.scaleFactor>=1){
+                        beakRadius*=this.scaleFactor;
+                    }
+                    if(Math.pow(this.branches[i].position[0] - this.bird.position[0], 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2], 2) <= beakRadius){
+                        this.bird.branch = this.branches[i];
+                        this.branches[i] = undefined;
+                    }  
+                }
             }
-            if(this.bird.branch == undefined){
-                var beakRadius = 2;
+            if(this.bird.branch != undefined){
+                var nestRadius = 2;
+                if(this.scaleFactor >= 1){
+                    nestRadius *= this.scaleFactor;
+                }
+                if(Math.pow(this.bird.position[0] - (this.nest.position[0]+0.5), 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2] - (this.nest.position[2]-0.5), 2) <= nestRadius){
+                    this.nest.branches.push(this.bird.branch);
+                    this.bird.branch = undefined;    
+                }
+            }
+            if(this.bird.person == undefined){
+                var beakRadius = 3;
                 if(this.scaleFactor>=1){
                     beakRadius*=this.scaleFactor;
                 }
-                console.log([this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)),this.bird.position[1],this.bird.position[2]+(2.97*Math.cos(this.bird.rotation))]);
-                console.log(this.branches[i].position);
-                if(Math.pow(this.branches[i].position[0] - this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)), 2) + Math.pow(this.branches[i].position[1] - this.bird.position[1], 2) + Math.pow(this.branches[i].position[2] - this.bird.position[2]+(2.97*Math.cos(this.bird.rotation)), 2) <= beakRadius){
-                    this.bird.branch = this.branches[i];
-                    this.branches[i] = undefined;
+                
+                if(Math.pow(this.person.position[0] - this.bird.position[0], 2) + Math.pow(this.person.position[1] - (this.bird.position[1]-3), 2) + Math.pow(this.person.position[2] - this.bird.position[2], 2) <= beakRadius) {
+                    this.bird.person = this.person;
+                    this.person = undefined;
                 }  
-            }
-        }
-        if(this.bird.branch != undefined){
-            var nestRadius = 2;
-            if(this.scaleFactor >= 1){
-                nestRadius *= this.scaleFactor;
-            }
-            if(Math.pow(this.bird.position[0]+(2.97*Math.sin(this.bird.rotation)) - this.nest.position[0]+0.5, 2) + Math.pow(this.bird.position[1] - this.nest.position[1], 2) + Math.pow(this.bird.position[2]+(2.97*Math.cos(this.bird.rotation)) - this.nest.position[2]+0.5, 2) <= nestRadius){
-                this.nest.branches.push(this.bird.branch);
-                this.bird.branch = undefined;    
             }
         }
 
@@ -167,7 +178,14 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
        
-        this.person.display();
+        if(this.person != undefined){
+            this.pushMatrix();
+            this.translate(this.person.position[0], this.person.position[1], this.person.position[2]);
+            this.rotate(Math.PI/4, 0, 1, 0);
+            this.rotate(Math.PI/2, 1, 0, 0);
+            this.person.display();
+            this.popMatrix();
+        }
 
         this.boat.display();
         

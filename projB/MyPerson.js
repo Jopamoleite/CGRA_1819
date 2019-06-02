@@ -98,12 +98,8 @@ class MyPerson extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
-        this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.scale(0.75, 0.75, 0.75);
-
-        this.scene.rotate(Math.PI/4, 0, 1, 0);
-        this.scene.rotate(Math.PI/2, 1, 0, 0);
-
+        
         this.scene.pushMatrix();
         this.scene.scale(0.15, 0.15, 0.15);
         this.scene.translate(2, 6.25, -3);

@@ -88,6 +88,7 @@ class MyScene extends CGFscene {
         this.lightning.update(this.newTime);
         this.oldTime = this.newTime;
 
+        //If bird is currently going down or up after pressing P
         if(this.bird.pickingUp){
             for(var i = 0; i < this.branches.length; i++){
                 if(this.branches[i] == undefined){

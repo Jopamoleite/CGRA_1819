@@ -93,7 +93,7 @@ class MyScene extends CGFscene {
                 continue;
             }
             if(this.bird.branch == undefined){
-                var beakRadius = 1.5;
+                var beakRadius = 2;
                 if(this.scaleFactor>=1){
                     beakRadius*=this.scaleFactor;
                 }

@@ -34,6 +34,9 @@ serialInclude(['../lib/CGF.js',
                 'MyBoat.js',
                 'MyOar.js',
                 'MyPerson.js',
+                'MyEgg.js',
+                'MyBrokenEgg.js',
+                'MyBabyBird.js',
             
 main=function()
 {

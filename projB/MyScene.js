@@ -36,7 +36,7 @@ class MyScene extends CGFscene {
         this.branch2 = new MyTreeBranch(this, 5, 4.25, 0);
         this.branch3 = new MyTreeBranch(this, -2, 4.25, -10);
         this.branch4 = new MyTreeBranch(this, 15, 4.25, 6);
-        this.nest = new MyNest(this, 10, 5.25, -8);
+        this.nest = new MyNest(this, 10, 5, -8);
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this, 2.0, 2.5, 3.0);
         this.cubemap = new MyCubeMap(this, 60, this.skyTextureDay);
@@ -171,7 +171,7 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        //this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -272,6 +272,7 @@ class MyScene extends CGFscene {
         this.translate(0, -30, 0 );
         this.cubemap.display();
         this.popMatrix();
+
         // ---- END Primitive drawing section
     }
 }

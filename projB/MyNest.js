@@ -10,9 +10,15 @@ class MyNest extends CGFobject {
 
         this.branches = [];
 
+        this.initMaterials();
+
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
-        this.initMaterials();
+        this.egg1 = new MyBrokenEgg(this.scene);
+        this.brokenPart = new MyBrokenEgg(this.scene);
+        this.egg2 = new MyEgg(this.scene);
+        this.egg3 = new MyEgg(this.scene);
+        this.babyBird = new MyBabyBird(this.scene);
     }
 
     initMaterials(){
@@ -35,19 +41,54 @@ class MyNest extends CGFobject {
         for(var i = 0; i < this.branches.length; i++){
             if(this.branches[i] != undefined){
                 this.scene.pushMatrix();
-                this.scene.translate(0.7*(i-1), 0, -1);
+                this.scene.rotate(-Math.PI/7, 1, 0, 0);
+                this.scene.translate(-0.2, 0, 0);
+                this.scene.translate(0.6*(i-1), -1.5, 0.1);
                 this.branches[i].display();
                 this.scene.popMatrix();
                 
             }
         }
-        
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.75, -1);
+        this.scene.rotate(-Math.PI/4, 1, 0, 0);
+        this.babyBird.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.5, -0.5);
+        this.scene.rotate(3*Math.PI/2, 1, 0, 0);
+        this.brokenPart.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -2);
+        this.scene.rotate(-Math.PI/4, 1, 0, 0);
+        this.egg1.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-1.5, 0, -1);
+        this.scene.rotate(Math.PI/4, 0, 0, 1);
+        this.scene.rotate(-Math.PI/4, 1, 0, 0);
+        this.egg2.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(1.5, 0, -1);
+        this.scene.rotate(-Math.PI/4, 0, 0, 1);
+        this.scene.rotate(-Math.PI/4, 1, 0, 0);
+        this.egg3.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
         this.scene.scale(3, 1.5, 3);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
-
         this.woodMaterial.apply();
         this.outside.display();
         this.inside.display();
+        this.scene.popMatrix();
 
         this.scene.popMatrix();
     }

@@ -14,11 +14,14 @@ class MySphere extends CGFobject
         this.textureFront = textureFront;
         this.textureBack = textureBack;
 
+        //Initialization of the parts
         this.frontHalf = new MyHalfSphere(this.scene, this.radius, this.slices, this.stacks);
         this.backHalf = new MyHalfSphere(this.scene, this.radius, this.slices, this.stacks);
 
     };
     
+    //Displays a sphere, by using two different semi-spheres
+    //We used two half spheres instead of creating a new primitive from scratch because we required half a sphere for certain objects
     display(){
         this.scene.pushMatrix();
         if(this.textureFront != undefined)

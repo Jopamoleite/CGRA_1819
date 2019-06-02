@@ -10,7 +10,8 @@ class MyQuadBothFaces extends CGFobject {
 		if (coords != undefined)
 			this.updateTexCoords(coords);
 	}
-	
+
+	//Initializes a quad, the same as MyQuad, but does it for both sides
 	initBuffers() {
 		this.vertices = [
             0, 0, 0,

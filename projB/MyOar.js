@@ -7,10 +7,13 @@ class MyOar extends CGFobject {
         super(scene);
 
         this.initMaterials();
+
+        //Initialization of the different parts
         this.stick = new MyUnitCubeQuad(this.scene, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial);
         this.cube = new MyUnitCubeQuad(this.scene, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial, this.woodMaterial);
     }
 
+    //Initialization of the materials
     initMaterials(){
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk.png');
 
@@ -23,6 +26,7 @@ class MyOar extends CGFobject {
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays an oar
     display(){
         this.scene.pushMatrix();
         this.scene.translate(0, 0.25, 0);

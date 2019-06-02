@@ -6,12 +6,15 @@ class MyNest extends CGFobject {
     constructor(scene, x, y, z) {
         super(scene);
 
+        //Position vector used to check for collision
         this.position = [x, y, z];
 
+        //Empty vector to be filled with branches carried by the bird
         this.branches = [];
 
         this.initMaterials();
 
+        //initialized the different parts
         this.outside = new MyHalfSphere(this.scene, 1, 10, 10);
         this.inside = new MyHalfSphere(this.scene, 1, 10, 10, true);
         this.egg1 = new MyBrokenEgg(this.scene);
@@ -21,6 +24,7 @@ class MyNest extends CGFobject {
         this.babyBird = new MyBabyBird(this.scene);
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.woodTexture = new CGFtexture(this.scene, 'images/nest.png');
@@ -34,10 +38,14 @@ class MyNest extends CGFobject {
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the birds nest
     display(){
         this.scene.pushMatrix();
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.scale(0.35, 0.35, 0.35);
+
+        //Goes over the branch list, and draws the branches if they are defined
+        //Each new branch placed, is placed further to the right of the others and rotated a bit so as to not overlap
         for(var i = 0; i < this.branches.length; i++){
             if(this.branches[i] != undefined){
                 this.scene.pushMatrix();
@@ -92,14 +100,6 @@ class MyNest extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
-    }
-    
-    updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
-
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
     }
 }
 

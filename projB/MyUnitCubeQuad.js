@@ -5,8 +5,12 @@
  */
 class MyUnitCubeQuad extends CGFobject {
 	constructor(scene, textureSide1, textureSide2, textureSide3, textureSide4, textureTop, textureBot) {
-		super(scene);
+        super(scene);
+        
+        //Quad iniialization
         this.quad = new MyQuad(this.scene);
+
+        //Assigning parameteres to object variables
         this.textureSide1 = textureSide1;
         this.textureSide2 = textureSide2;
         this.textureSide3 =  textureSide3;
@@ -18,6 +22,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.quad.updateTexCoords(this.txCoords);
 	}
 
+    //Displays the Cube made up of quads, each with a texture that was passed as parameter to the class
 	display(){
 
 		this.scene.pushMatrix();

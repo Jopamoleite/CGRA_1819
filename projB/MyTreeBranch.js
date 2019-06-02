@@ -6,19 +6,22 @@ class MyTreeBranch extends CGFobject {
     constructor(scene, x, y, z) {
         super(scene);
 
+        //Position used to check for collisions on MyScene
         this.position = [x, y, z];
 
+        //Iniialization of the parts
         this.branch = new MyCylinder(this.scene, 6);
         this.branchTop = new MyCylinderCover(this.scene, 6);
         this.branchBot = new MyCylinderCover(this.scene, 6);
-
-        
         this.minorBranch = new MyCylinder(this.scene, 6);
         this.minorBranchBot = new MyCylinderCover(this.scene, 6);
         this.leaf = new MyTriangle(this.scene);
+ 
+ 
         this.initMaterials();
     }
 
+    //Initialization of the materials
     initMaterials(){
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk2.png');
 
@@ -41,6 +44,7 @@ class MyTreeBranch extends CGFobject {
         this.leafMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the branch
     display(){
         this.scene.pushMatrix();
         this.scene.translate(0, 0.25, 0);

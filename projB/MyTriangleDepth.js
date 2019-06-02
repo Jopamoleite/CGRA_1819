@@ -7,12 +7,14 @@ class MyTriangleDepth extends CGFobject {
 	constructor(scene, textureTop, textureBot, connection1, connection2, connection3) {
         super(scene);
 
+        //Assigning the textures received as parameter to variables in this object
         this.textureTop = textureTop;
         this.textureBot = textureBot;
         this.connection1 = connection1;
         this.connection2 = connection2;
         this.connection3 = connection3;
         
+        //Initialization of the different parts
         this.triangle1 = new MyTriangle(this.scene);
         this.triangle2 = new MyTriangle(this.scene);
         this.connector1 = new MyQuad(this.scene);
@@ -20,6 +22,7 @@ class MyTriangleDepth extends CGFobject {
         this.connector3 = new MyQuad(this.scene);
     }
     
+    //A triangular prism with very little depth
     display(){
 
         this.scene.pushMatrix();

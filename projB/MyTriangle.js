@@ -9,6 +9,8 @@ class MyTriangle extends CGFobject {
 		this.initBuffers();
 		this.time = 0;
 	}
+
+	//Triangle with both faces showing
 	initBuffers() {
 		this.vertices = [
 			0, 0, 0,    //0

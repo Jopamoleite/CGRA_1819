@@ -101,14 +101,6 @@ class MyNest extends CGFobject {
 
         this.scene.popMatrix();
     }
-    
-    updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
-
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
-    }
 }
 
 

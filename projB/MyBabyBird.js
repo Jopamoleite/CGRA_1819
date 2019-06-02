@@ -8,6 +8,7 @@ class MyBabyBird extends CGFobject {
 
         this.initMaterials();
 
+        //Initilization of the several body parts
         this.body = new MyCylinder(this.scene, 6);
         this.neck = new MyCone(this.scene, 6);
         this.tail = new MyCone(this.scene, 6);
@@ -19,6 +20,7 @@ class MyBabyBird extends CGFobject {
         this.leftEye = new MySphere(this.scene, 1, 8, 5);
     }
 
+    //Initilization of the materials
     initMaterials(){
         
         this.featherTexture = new CGFtexture(this.scene, 'images/mix.png');
@@ -68,7 +70,7 @@ class MyBabyBird extends CGFobject {
         this.faceBackMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
-
+    //Displays the baby bird
     display() {
 
         this.scene.pushMatrix();

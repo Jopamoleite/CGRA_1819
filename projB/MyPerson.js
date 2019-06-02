@@ -28,8 +28,8 @@ class MyPerson extends CGFobject {
         this.skinTexture = new CGFtexture(this.scene, 'images/skin.png');
 
         this.skinMaterial = new CGFappearance(this.scene);
-        this.skinMaterial.setAmbient(0.6, 0.4, 0.4, 1.0);
-        this.skinMaterial.setDiffuse(0.6, 0.4, 0.4, 1.0);
+        this.skinMaterial.setAmbient(0.7, 0.5, 0.5, 1.0);
+        this.skinMaterial.setDiffuse(0.7, 0.5, 0.5, 1.0);
         this.skinMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.skinMaterial.setShininess(10.0);
         this.skinMaterial.setTexture(this.skinTexture);
@@ -38,9 +38,9 @@ class MyPerson extends CGFobject {
         this.hairTexture = new CGFtexture(this.scene, 'images/hair.png');
 
         this.hairMaterial = new CGFappearance(this.scene);
-        this.hairMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
+        this.hairMaterial.setAmbient(0.3, 0.3, 0.3, 1.0);
         this.hairMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
-        this.hairMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.hairMaterial.setSpecular(0.2, 0.2, 0.2, 1.0);
         this.hairMaterial.setShininess(10.0);
         this.hairMaterial.setTexture(this.hairTexture);
         this.hairMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -48,8 +48,8 @@ class MyPerson extends CGFobject {
         this.jeansTexture = new CGFtexture(this.scene, 'images/jeans.png');
 
         this.jeansMaterial = new CGFappearance(this.scene);
-        this.jeansMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
-        this.jeansMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.jeansMaterial.setAmbient(0.3, 0.0, 0.5, 1.0);
+        this.jeansMaterial.setDiffuse(0.3, 0.0, 0.5, 1.0);
         this.jeansMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.jeansMaterial.setShininess(10.0);
         this.jeansMaterial.setTexture(this.jeansTexture);
@@ -58,8 +58,8 @@ class MyPerson extends CGFobject {
         this.shirtTexture = new CGFtexture(this.scene, 'images/shirt.png');
 
         this.shirtMaterial = new CGFappearance(this.scene);
-        this.shirtMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
-        this.shirtMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.shirtMaterial.setAmbient(0.7, 0.7, 0.7, 1.0);
+        this.shirtMaterial.setDiffuse(0.7, 0.7, 0.7, 1.0);
         this.shirtMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.shirtMaterial.setShininess(10.0);
         this.shirtMaterial.setTexture(this.shirtTexture);
@@ -68,8 +68,8 @@ class MyPerson extends CGFobject {
         this.eyeTexture = new CGFtexture(this.scene, 'images/personEye.png');
 
         this.eyeMaterial = new CGFappearance(this.scene);
-        this.eyeMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
-        this.eyeMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.eyeMaterial.setAmbient(0.8, 0.8, 0.8, 1.0);
+        this.eyeMaterial.setDiffuse(0.8, 0.8, 0.8, 1.0);
         this.eyeMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.eyeMaterial.setShininess(10.0);
         this.eyeMaterial.setTexture(this.eyeTexture);
@@ -78,8 +78,8 @@ class MyPerson extends CGFobject {
         this.eyeSideTexture = new CGFtexture(this.scene, 'images/eyeSide.png');
 
         this.eyeSideMaterial = new CGFappearance(this.scene);
-        this.eyeSideMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
-        this.eyeSideMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.eyeSideMaterial.setAmbient(0.8, 0.8, 0.8, 1.0);
+        this.eyeSideMaterial.setDiffuse(0.8, 0.8, 0.8, 1.0);
         this.eyeSideMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.eyeSideMaterial.setShininess(10.0);
         this.eyeSideMaterial.setTexture(this.eyeSideTexture);
@@ -88,8 +88,8 @@ class MyPerson extends CGFobject {
         this.lipsTexture = new CGFtexture(this.scene, 'images/lips.png');
 
         this.lipsMaterial = new CGFappearance(this.scene);
-        this.lipsMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
-        this.lipsMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.lipsMaterial.setAmbient(0.7, 0.7, 0.7, 1.0);
+        this.lipsMaterial.setDiffuse(0.7, 0.7, 0.7, 1.0);
         this.lipsMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
         this.lipsMaterial.setShininess(10.0);
         this.lipsMaterial.setTexture(this.lipsTexture);

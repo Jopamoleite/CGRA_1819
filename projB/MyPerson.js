@@ -6,9 +6,12 @@ class MyPerson extends CGFobject {
     constructor(scene) {
         super(scene);
 
+        //Vector with position used to check for collisions on MyScene
         this.position = [-10.5, 2.5, 5.5];
 
         this.initMaterials();
+
+        //Initialization of the different parts
         this.head = new MySphere(this.scene, 1, 10, 10, this.skinMaterial, this.hairMaterial);
         this.upperBody = new MyCylinder(this.scene, 6);
         this.lowerBody = new MyCylinder(this.scene, 6);
@@ -23,6 +26,7 @@ class MyPerson extends CGFobject {
         this.mouth = new MyHalfSphere(this.scene, 1, 10, 10);
     }
 
+    //Initialization of the materials
     initMaterials(){
         
         this.skinTexture = new CGFtexture(this.scene, 'images/skin.png');
@@ -96,6 +100,7 @@ class MyPerson extends CGFobject {
         this.lipsMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
+    //Displays the person
     display(){
         this.scene.pushMatrix();
         this.scene.scale(0.75, 0.75, 0.75);

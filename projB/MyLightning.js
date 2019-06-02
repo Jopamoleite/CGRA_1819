@@ -67,8 +67,8 @@ class MyLightning extends MyLSystem{
 
     display(){
     	this.scene.pushMatrix();
-        this.scene.translate(this.x, 50, this.z);
-        this.scene.scale(10,13,1);
+        this.scene.translate(this.x, 30, this.z);
+        this.scene.scale(10,7,1);
         this.scene.rotate(this.rotation, 0.0, 1.0, 0.0);
         this.scene.rotate(Math.PI, 0.0, 0.0, 1.0);
     	this.lightningMaterial.apply();
@@ -127,7 +127,6 @@ class MyLightning extends MyLSystem{
                     {
                         this.scene.pushMatrix();
                         this.scene.scale(0.05,1.0,1.0);
-                        this.scene.translate(0.0, 0.49, 0.0);
                         primitive.display();
                         this.scene.popMatrix();
                         this.scene.translate(0, 1, 0);

@@ -15,9 +15,9 @@ class MyOar extends CGFobject {
         this.woodTexture = new CGFtexture(this.scene, 'images/Trunk.png');
 
         this.woodMaterial = new CGFappearance(this.scene);
-        this.woodMaterial.setAmbient(0.4, 0.2, 0.1, 1.0);
-        this.woodMaterial.setDiffuse(0.4, 0.2, 0.1, 1.0);
-        this.woodMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.woodMaterial.setAmbient(0.3, 0.2, 0.2, 1.0);
+        this.woodMaterial.setDiffuse(0.3, 0.2, 0.2, 1.0);
+        this.woodMaterial.setSpecular(0.3, 0.3, 0.3, 1.0);
         this.woodMaterial.setShininess(10.0);
         this.woodMaterial.setTexture(this.woodTexture);
         this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');

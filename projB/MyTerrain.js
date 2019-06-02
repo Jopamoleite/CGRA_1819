@@ -29,6 +29,7 @@ class MyTerrain extends CGFobject {
 
     }
 
+    //Initialization of the textures 
     initMaterials(){
         
         this.terrainTexture = new CGFtexture(this.scene, 'images/terrain2.jpg');
@@ -37,7 +38,7 @@ class MyTerrain extends CGFobject {
 
     }
 
-
+    //Displays the terrain
     display() {
 
         this.scene.pushMatrix();

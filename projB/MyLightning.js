@@ -18,7 +18,8 @@ class MyLightning extends MyLSystem{
 		this.x =Math.floor(Math.random() * 20) -10;
 		this.z =Math.floor(Math.random() * 20) -10;
 		this.rotation =Math.floor(Math.random() * 8) * Math.PI/4;
-
+        
+        //Function that generates a lightning
         this.doGenerate = function(){
         	this.generate(
         		this.axiom,
@@ -34,6 +35,7 @@ class MyLightning extends MyLSystem{
 
     }
 
+    //Initialization of the materials 
     initMaterials(){
         this.lightningMaterial = new CGFappearance(this.scene);
         this.lightningMaterial.setAmbient(1.0,1.0,1.0,1.0);
@@ -42,6 +44,7 @@ class MyLightning extends MyLSystem{
         this.lightningMaterial.setShininess(10.0);
     }
 
+    //Initialization of the grammar
     initGrammar(){
     	this.grammar = {
     		"F": new MyQuadBothFaces(this.scene),
@@ -49,22 +52,27 @@ class MyLightning extends MyLSystem{
     	};
     }
 
+    //Generates a new lightning and initalizes depth and time
     startAnimation(t){
     	this.doGenerate();
     	this.depth = 0;
-    	this.time = t;
+    	this.time = t; //stores the time at which the animation started
     }
 
+    //Updates the value of depth according to time
     update(t){
     	this.deltaT = t - this.time;
 		this.depth = this.deltaT*this.axiom.length;
 		//this.depth = this.axiom.length;
 		if(this.depth > this.axiom.length){
+        //If true it means the whole lightning has been drawn
+        //so reset depth
 			this.depth = 0;
 			return;
 		}
     }
 
+    //Displays the lightning
     display(){
     	this.scene.pushMatrix();
         this.scene.translate(this.x, 30, this.z);
@@ -76,6 +84,7 @@ class MyLightning extends MyLSystem{
         this.scene.scale(this.scale, this.scale, this.scale);
         var i;
 
+        //Used to verify if number of pushMatrix() and popMatrix() calls in the end is the same
 		this.pushCount = 0;
     	this.popCount = 0;
     	
@@ -138,6 +147,7 @@ class MyLightning extends MyLSystem{
     	this.scene.popMatrix();
     	var j;
     	for(j = 0; j < this.pushCount-this.popCount; ++j){
+            //calls popMatrix() until the number of pushMatrix() and popMatrix() calls is the same
     		this.scene.popMatrix();
     	}
     }

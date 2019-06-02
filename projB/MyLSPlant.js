@@ -12,6 +12,7 @@ class MyLSPlant extends MyLSystem {
         this.iterations = 4;
         this.scaleFactor = 0.6;
 
+        //Function that generates a tree
         this.doGenerate = function () {
             this.generate(
                 this.axiom,

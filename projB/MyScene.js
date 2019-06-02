@@ -174,6 +174,8 @@ class MyScene extends CGFscene {
         //If the key L is pressed we call the method to start the lightning's animation
         if (this.gui.isKeyPressed("KeyL")) {
             if(this.newTime - this.startAnimationTime >= 1){
+                //guarantees that a lightning is drawn until the end
+                //and not interrupted by pressing the L key again
                 this.startAnimationTime = this.newTime;
                 this.lightning = new MyLightning(this);
                 this.lightning.startAnimation(this.startAnimationTime);

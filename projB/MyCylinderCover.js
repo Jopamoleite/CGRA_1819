@@ -25,7 +25,7 @@ class MyCylinderCover extends CGFobject {
         }
         this.vertices.push(Math.cos(0), 0, Math.sin(0));
         this.normals.push(Math.cos(0), 0, Math.sin(0));
-        this.texCoords.push(Math.cos(0), 0, Math.sin(0));
+        this.texCoords.push(0.5+0.5*Math.cos(0), 0.5+0.5*Math.sin(0));
         
         this.indices.push(this.slices, this.slices-1, 0);
         this.indices.push(this.slices+1, this.slices, 0);

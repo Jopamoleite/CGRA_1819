@@ -20,6 +20,7 @@ class MyPerson extends CGFobject {
         this.eyeFront1 = new MyCylinderCover(this.scene, 6);
         this.eyeSide2 = new MyCylinder(this.scene, 6);
         this.eyeFront2 = new MyCylinderCover(this.scene, 6);
+        this.mouth = new MyHalfSphere(this.scene, 1, 10, 10);
     }
 
     initMaterials(){
@@ -73,6 +74,26 @@ class MyPerson extends CGFobject {
         this.eyeMaterial.setShininess(10.0);
         this.eyeMaterial.setTexture(this.eyeTexture);
         this.eyeMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.eyeSideTexture = new CGFtexture(this.scene, 'images/eyeSide.png');
+
+        this.eyeSideMaterial = new CGFappearance(this.scene);
+        this.eyeSideMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
+        this.eyeSideMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.eyeSideMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.eyeSideMaterial.setShininess(10.0);
+        this.eyeSideMaterial.setTexture(this.eyeSideTexture);
+        this.eyeSideMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.lipsTexture = new CGFtexture(this.scene, 'images/lips.png');
+
+        this.lipsMaterial = new CGFappearance(this.scene);
+        this.lipsMaterial.setAmbient(0.6, 0.6, 0.6, 1.0);
+        this.lipsMaterial.setDiffuse(0.3, 0.3, 0.3, 1.0);
+        this.lipsMaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.lipsMaterial.setShininess(10.0);
+        this.lipsMaterial.setTexture(this.lipsTexture);
+        this.lipsMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     display(){
@@ -85,19 +106,32 @@ class MyPerson extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.scale(0.15, 0.15, 0.15);
-        this.scene.translate(2, 7, -3);
+        this.scene.translate(2, 6.25, -3);
         this.scene.rotate(Math.PI, 0, 0, 1);
         this.eyeMaterial.apply();
         this.eyeFront1.display();
+        this.eyeSideMaterial.apply();
         this.eyeSide1.display();
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
         this.scene.scale(0.15, 0.15, 0.15);
-        this.scene.translate(-2, 7, -3);
+        this.scene.translate(-2, 6.25, -3);
         this.scene.rotate(Math.PI, 0, 0, 1);
+        this.eyeMaterial.apply();
         this.eyeFront2.display();
+        this.eyeSideMaterial.apply();
         this.eyeSide2.display();
+        this.scene.popMatrix();
+        
+        
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI/10, 1, 0, 0);
+        this.scene.scale(0.5, 0.5, 0.15);
+        this.scene.translate(0, 1.15, -0.5);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.lipsMaterial.apply();
+        this.mouth.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
